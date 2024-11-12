@@ -2,7 +2,7 @@
 
 # Jogo Snake em Java
 ![alt text]([http://url/to/img.png](https://i0.wp.com/tilcode.blog/wp-content/uploads/2019/04/Screen-Shot-2019-04-28-at-17.51.16.png?w=998&ssl=1))
-
+![Alt text](https://i0.wp.com/tilcode.blog/wp-content/uploads/2019/04/Screen-Shot-2019-04-28-at-17.51.16.png?w=998&ssl=1)
 ----------------------------------------------------------------------------------------
 ## Alunos
 
