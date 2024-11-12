@@ -7,7 +7,7 @@
 ### João Rebelo
 ### José Cardoso
 ### Diogo Cardoso
-
+----------------------------------------------------------------------------------------
 ## Descrição
 Este projeto é uma implementação do clássico jogo Snake utilizando a linguagem de programação Java. O objetivo do jogo é controlar uma cobra que cresce ao comer itens de comida, evitando colisões com as paredes e com o próprio corpo.
 
