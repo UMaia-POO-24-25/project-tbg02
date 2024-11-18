@@ -1,4 +1,4 @@
-## POO_GX - PROJECT NAME
+## POO_GX - SNAKE
 
 > Include here one or two paragraphs explaining the main idea of the project, followed by a sentence identifying who the authors are.
 
