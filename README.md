@@ -19,10 +19,8 @@ Este projeto é uma implementação do clássico jogo Snake utilizando a linguag
 - Gera aleatóriamente itens de comida.
 - Detecção de colisões com as paredes e com o próprio corpo da cobra.
 
-## Estrutura do Projeto
 
-
-## Como Executar
+## Como Jogar
 1. Certifique-se de ter o Java Development Kit (JDK) instalado.
 2. Clone este repositório:
    ```bash
