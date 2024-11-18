@@ -60,7 +60,12 @@ O objetivo principal do **Modo Clássico** é controlar a cobra, fazendo-a cresc
 - **Ecrã Fim de Jogo**: Quando o jogo termina, seja por colisão com uma parede ou com o próprio corpo, é exibida um ecrã de fim de jogo com a pontuação final. O jogador pode optar por jogar novamente.
 
 - **Ecrã Inicial e Menus**: O jogo começa com um ecrã inicial simples, onde o jogador pode iniciar o jogo ou aceder o menu de configurações. A navegação no menu é feita com as teclas direcionais.
-
+-    **Menu**
+- **Novo Jogo**
+- **Pontuaçao**
+- **Definiçoes**
+- **Sobre**
+  
 ## Exemplo de Fluxo de Jogo
 
 1. **Início**: O jogador começa com uma cobra de tamanho pequeno no centro da ecrã.
