@@ -59,12 +59,12 @@ O objetivo principal do **Modo Clássico** é controlar a cobra, fazendo-a cresc
 
 - **Ecrã Fim de Jogo**: Quando o jogo termina, seja por colisão com uma parede ou com o próprio corpo, é exibida um ecrã de fim de jogo com a pontuação final. O jogador pode optar por jogar novamente.
 
-- **Ecrã Inicial e Menus**: O jogo começa com uma tela inicial simples, onde o jogador pode iniciar o jogo ou aceder o menu de configurações. A navegação no menu é feita com as teclas direcionais.
+- **Ecrã Inicial e Menus**: O jogo começa com um ecrã inicial simples, onde o jogador pode iniciar o jogo ou aceder o menu de configurações. A navegação no menu é feita com as teclas direcionais.
 
 ## Exemplo de Fluxo de Jogo
 
-1. **Início**: O jogador começa com uma cobra de tamanho pequeno no centro da tela.
-2. **Crescimento**: À medida que a cobra come alimentos que aparecem aleatoriamente na tela, ela cresce.
+1. **Início**: O jogador começa com uma cobra de tamanho pequeno no centro da ecrã.
+2. **Crescimento**: À medida que a cobra come alimentos que aparecem aleatoriamente na ecrã, ela cresce.
 3. **Aumento de Dificuldade**: Com o crescimento da cobra, a velocidade aumenta.
 4. **Desafio**: O espaço para manobras vai diminuindo, tornando mais difícil evitar colisões.
 5. **Fim do Jogo**: O jogo termina quando a cobra bate numa parede ou colide com a sua própria cauda.
@@ -79,7 +79,7 @@ O objetivo principal do **Modo Clássico** é controlar a cobra, fazendo-a cresc
 
 - **Ecrã do Jogo**: A comida aparece aleatoriamente e o objetivo do jogador é capturá-la sem colidir com as bordas ou com a sua própria cauda.
   
-- **Pontuação**: A pontuação é exibida em um canto da tela e aumenta conforme a cobra come mais alimentos.
+- **Pontuação**: A pontuação é exibida em um canto do ecrã e aumenta conforme a cobra come mais alimentos.
 
 ## Conclusão
 
