@@ -29,10 +29,12 @@ Aqui estão os principais detalhes e funcionalidades deste modo:
 Objetivo do Jogo
 O objetivo principal do Modo Clássico é controlar a cobra, fazendo-a crescer ao comer alimentos (geralmente representados por maçãs ou itens similares) enquanto evita colidir com as paredes e com o próprio corpo da cobra.
 O jogo termina quando a cobra colide com um obstáculo (como uma parede) ou com ela própria (quando a cauda toca a cabeça).
+
 Controlo
 Setas Direcionais: O jogador controla a direção da cobra (cima, baixo, esquerda ou direita) usando as teclas de movimento.
 A cobra continua a mover-se na direção indicada até que o jogador mude de direção.
 Mecânica do Jogo
+
 Crescimento da Cobra:
 Cada vez que a cobra come um alimento (geralmente uma maçã ou item equivalente), ela cresce em tamanho. Isso torna o jogo mais difícil à medida que o jogador precisa de mais espaço para se movimentar.
 Velocidade Progressiva:
@@ -41,27 +43,32 @@ Limites da Arena:
 A arena do jogo é cercada por paredes. Se a cobra colidir com uma dessas paredes, o jogo termina.
 Colisão com a Própria Cobra:
 Se a cobra colidir com seu próprio corpo (ou seja, a cabeça toca em qualquer parte da cauda), o jogo também termina.
+
 Pontos:
 O jogador ganha pontos toda vez que a cobra come um alimento. Quanto mais alimentos a cobra comer, maior será a sua pontuação.
 Dificuldade Progressiva:
 À medida que a cobra cresce, o jogo torna-se mais difícil, uma vez que a área disponível para manobras diminui.
 A velocidade também tende a aumentar conforme o jogador progride, tornando a navegação mais desafiadora.
 Funções e Características
+
 Pontuação:
 A pontuação é calculada com base no número de alimentos que a cobra come. Cada alimento consumido vale uma quantidade de pontos.
 O jogador pode tentar alcançar a maior pontuação possível, o que é registado no quadro de líderes.
 Modo de Jogo Simples:
 Não há elementos externos como power-ups ou obstáculos móveis neste modo, o foco está apenas em controlar a cobra e evitar colisões.
+
 Ecrã Fim de Jogo:
 Quando o jogo termina, seja por colisão com uma parede ou com o próprio corpo, é exibida um ecrã de fim de jogo com a pontuação final. O jogador pode optar por jogar novamente.
 Erã Inicial e Menus:
 O jogo começa com uma tela inicial simples, onde o jogador pode iniciar o jogo ou aceder o menu de configurações. A navegação no menu é feita com as teclas direcionais.
+
 Exemplo de Fluxo de Jogo
 Início: O jogador começa com uma cobra de tamanho pequeno no centro da tela.
 Crescimento: À medida que a cobra come alimentos que aparecem aleatoriamente na tela, ela cresce.
 Aumento de Dificuldade: Com o crescimento da cobra, a velocidade aumenta.
 Desafio: O espaço para manobras vai diminuindo, tornando mais difícil evitar colisões.
 Fim do Jogo: O jogo termina quando a cobra bate numa parede ou colide com a sua própria cauda.
+
 Visuais e Estilo
 Design Simples e Retro: O estilo visual é geralmente simples, com gráficos retro, que são típicos do jogo Snake original. A cobra é representada por um conjunto de quadrados ou segmentos, e o alimento por um pequeno ícone (como uma maçã ou cubo).
 Cor da Cobra: Normalmente, a cobra começa com uma cor única (por exemplo, verde), mas em versões mais modernas, pode haver opções de personalização, como cores e skins diferentes.
