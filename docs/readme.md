@@ -2,7 +2,7 @@
 
 O jogo Snake é um clássico dos videojogos, onde o jogador controla uma cobra que se move continuamente pela tela. O objetivo é comer a comida que aparece aleatoriamente, o que faz com que a cobra cresça a cada pedaço consumido. O desafio consiste em evitar colisões com as paredes e com o corpo da própria cobra, enquanto tenta alcançar a maior pontuação possível. O jogo torna-se mais difícil à medida que a cobra cresce em tamanho e a sua velocidade aumenta.
 
-Este projeto está implementado em Java, proporcionando uma experiência interativa  O jogo inclui controlos suaves, aumento de dificuldade e um sistema de pontuação.
+Este projeto está implementado em Java, proporcionando uma experiência interativa. O jogo inclui controlos suaves, aumento de dificuldade e um sistema de pontuação.
 
 **Este Projeto foi implementado por alunos da licenciatua informatica**
 ** Diogo Teixeira **
