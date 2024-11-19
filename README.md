@@ -19,6 +19,8 @@ O objetivo do jogo é controlar a Snake que vai crescendo ao apanhar os itens, e
 - Crescimento da Snake ao apanhar os itens .
 - Gera aleatóriamente itens especiais.
 - Detecção de colisões com as paredes e com o próprio corpo da Snake.
+- Menu
+- Pontuaçao
 
 
 ## Como Jogar
