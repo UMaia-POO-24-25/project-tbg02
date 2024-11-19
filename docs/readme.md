@@ -1,17 +1,28 @@
 ## POO_GX - SNAKE
 
-> Include here one or two paragraphs explaining the main idea of the project, followed by a sentence identifying who the authors are.
+O jogo Snake é um clássico dos videojogos, onde o jogador controla uma cobra que se move continuamente pela tela. O objetivo é comer a comida que aparece aleatoriamente, o que faz com que a cobra cresça a cada pedaço consumido. O desafio consiste em evitar colisões com as paredes e com o corpo da própria cobra, enquanto tenta alcançar a maior pontuação possível. O jogo torna-se mais difícil à medida que a cobra cresce em tamanho e a sua velocidade aumenta.
 
-**Example**:
+Este projeto está implementado em Java, proporcionando uma experiência interativa  O jogo inclui controlos suaves, aumento de dificuldade e um sistema de pontuação.
 
-In this exciting platform game you can help KangarooBoy save the world, by collecting all the coins throughout ten different levels in which you will […].
-
-This project was developed by *John Doe* (*john.doe*@umaia.pt) and *Jane Doe* (*jane.doe*@umaia.pt) for POO 2023⁄24.
+**Este Projeto foi implementado por alunos da licenciatua informatica**
+** Diogo Teixeira **
+** Joao Rebelo **
+** Jose Cardoso **
 
 ### IMPLEMENTED FEATURES
 
-> This section should contain a list of implemented features and their descriptions. In the end of the section, include two or three screenshots that illustrate the most important features.
-
+- **Jogo Snake**: O jogador controla uma cobra que se move pela tela, recolhendo frutas e crescendo a cada fruta consumida.
+- **Movimento contínuo**: A cobra move-se continuamente numa direção até que o jogador altere a sua direção.
+- **Controle de direção**: O jogador pode controlar a direção da cobra utilizando as teclas de seta (cima, baixo, esquerda, direita).
+- **Aumento de tamanho da cobra**: A cobra cresce cada vez que come uma fruta.
+- **Colisão com a parede**: O jogo termina se a cobra colidir com as paredes da tela.
+- **Colisão com o corpo da cobra**: O jogo termina se a cobra colidir consigo mesma.
+- **Pontuação**: O jogo mantém uma pontuação que aumenta à medida que a cobra come as frutas.
+- **Tela de início e fim**: Tela inicial com as opções de iniciar o jogo e uma tela de fim com a pontuação final exibida.
+- **Dificuldade crescente**: A velocidade da cobra aumenta à medida que a pontuação do jogador sobe.
+- **Modo de reinício**: O jogador pode reiniciar o jogo após ter acabado.
+- **Efeitos sonoros**: Sons para ações importantes, como comer uma fruta ou colidir com um obstáculo.
+- **Menu Iniciar**: Vai ter um menu com o inicio do jogo com as Potuaçoes maxima, e com o About.
 
 
 **Examples**:
@@ -21,10 +32,6 @@ This project was developed by *John Doe* (*john.doe*@umaia.pt) and *Jane Doe* (*
 
 ### PLANNED FEATURES
 
-> This section is similar to the previous one but should list the features that are not yet implemented. Instead of screenshots you should include GUI mock-ups for the planned features.
-
-# Funcionalidade do Jogo em Modo Clássico
-
 O **Modo Clássico** é a essência do jogo Snake e oferece uma experiência simples e viciante. Aqui estão os principais detalhes e funcionalidades deste modo:
 
 ## Objetivo do Jogo
@@ -33,7 +40,7 @@ O objetivo principal do **Modo Clássico** é controlar a cobra, fazendo-a cresc
 
 ## Controlo
 
-- **Setas Direcionais**: O jogador controla a direção da cobra (cima, baixo, esquerda ou direita) usando as teclas de movimento. A cobra continua a mover-se na direção indicada até que o jogador mude de direção.
+- **Setas Direcionais**: O jogador controla a direção da cobra usando as teclas direcionais. A cobra continua a mover-se na direção indicada até que o jogador mude de direção.
 
 ## Mecânica do Jogo
 
@@ -60,19 +67,22 @@ O objetivo principal do **Modo Clássico** é controlar a cobra, fazendo-a cresc
 - **Ecrã Fim de Jogo**: Quando o jogo termina, seja por colisão com uma parede ou com o próprio corpo, é exibida um ecrã de fim de jogo com a pontuação final. O jogador pode optar por jogar novamente.
 
 - **Ecrã Inicial e Menus**: O jogo começa com um ecrã inicial simples, onde o jogador pode iniciar o jogo ou aceder o menu de configurações. A navegação no menu é feita com as teclas direcionais.
--    **Menu**
+- **Menu**
 - **Novo Jogo**
 - **Pontuaçao**
 - **Definiçoes**
 - **Sobre**
+- **Niveis**
+- **Tipos de iteams**
   
-## Exemplo de Fluxo de Jogo
+## Exemplo de Fluxos de Jogo
 
-1. **Início**: O jogador começa com uma cobra de tamanho pequeno no centro da ecrã.
-2. **Crescimento**: À medida que a cobra come alimentos que aparecem aleatoriamente na ecrã, ela cresce.
-3. **Aumento de Dificuldade**: Com o crescimento da cobra, a velocidade aumenta.
-4. **Desafio**: O espaço para manobras vai diminuindo, tornando mais difícil evitar colisões.
-5. **Fim do Jogo**: O jogo termina quando a cobra bate numa parede ou colide com a sua própria cauda.
+- **Início**: O jogador começa com a Snake de tamanho pequeno no centro da tela.
+- **Crescimento**: A medida que a Snake consome Items que aparecem aleatoriamente na tela, ela cresce.
+- **Aumento de Dificuldade**: Com o crescimento da Snake, a velocidade aumenta.
+- **Desafio**: O espaço para manobras vai diminuindo, tornando mais difícil evitar colisões, conforme o seu crecimento.
+- **Obstáculos**: Sao inseridos obstáculos fixos ou móveis no campo de jogo que o jogador deve evitar, tornando o jogo mais desafiante à medida que a cobra cresce.
+- **Fim do Jogo**: O jogo termina quando a Snake bate numa parede ou colide com a sua própria cauda.
 
 ## Visuais e Estilo
 
@@ -84,7 +94,7 @@ O objetivo principal do **Modo Clássico** é controlar a cobra, fazendo-a cresc
 
 - **Ecrã do Jogo**: A comida aparece aleatoriamente e o objetivo do jogador é capturá-la sem colidir com as bordas ou com a sua própria cauda.
   
-- **Pontuação**: A pontuação é exibida em um canto do ecrã e aumenta conforme a cobra come mais alimentos.
+- **Pontuação**: A pontuação é exibida em um canto superior do ecrã e aumenta conforme a cobra come mais alimentos, vai ter a pontuaçao atual e a pontuaçao maxima.
 
 ## Conclusão
 
