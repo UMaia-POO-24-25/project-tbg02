@@ -36,21 +36,21 @@ O objetivo do jogo é controlar a Snake que vai crescendo ao apanhar os itens, e
 
 ## Funções e Características
 
-- **Pontuação**: A pontuação é calculada com base no número de alimentos que a cobra consome. Cada alimento consumido vale uma quantidade de pontos. O jogador pode tentar alcançar a maior pontuação possível, que é registada no quadro de líderes.
+- **Pontuação**: A pontuação é calculada com base no número de items que a Snake consome. Cada item vale uma quantidade de pontos. O jogador pode tentar alcançar a maior pontuação possível, que é registada no quadro de Pontuaçoes no menu principal.
 
-- **Modo de Jogo Simples**: Neste modo, não existem elementos externos como power-ups ou obstáculos móveis. O foco está apenas em controlar a cobra e evitar colisões.
+- **Tela de Fim de Jogo**: Quando o jogo termina, seja por colisão com uma parede ou com a própria Snake, é exibida uma tela de fim de jogo com a pontuação final. O jogador pode optar por jogar novamente ou voltar para o menu inicial.
 
-- **Tela de Fim de Jogo**: Quando o jogo termina, seja por colisão com uma parede ou com a própria cobra, é exibida uma tela de fim de jogo com a pontuação final. O jogador pode optar por jogar novamente.
+- **Tela Inicial e Menus**: O jogo começa com uma tela inicial simples ( Inicio , Pontuaçoes, About )  onde o jogador pode iniciar o jogo ou aceder as Pontuaçoes. A navegação no menu é feita com as teclas direcionais.
 
-- **Tela Inicial e Menus**: O jogo começa com uma tela inicial simples, onde o jogador pode iniciar o jogo ou aceder ao menu de configurações. A navegação no menu é feita com as teclas direcionais.
+- **Tela de Jogo** : Na tela de jogo vai aparecer na parte superior a Pontuaçao atual e a Potuaçao Maxima.  
 
 ## Exemplo de Fluxo de Jogo
 
-- **Início**: O jogador começa com uma cobra de tamanho pequeno no centro da tela.
-- **Crescimento**: À medida que a cobra consome alimentos que aparecem aleatoriamente na tela, ela cresce.
-- **Aumento de Dificuldade**: Com o crescimento da cobra, a velocidade aumenta.
-- **Desafio**: O espaço para manobras vai diminuindo, tornando mais difícil evitar colisões.
-- **Fim do Jogo**: O jogo termina quando a cobra bate numa parede ou colide com a sua própria cauda.
+- **Início**: O jogador começa com a Snake de tamanho pequeno no centro da tela.
+- **Crescimento**: A medida que a Snake consome Items que aparecem aleatoriamente na tela, ela cresce.
+- **Aumento de Dificuldade**: Com o crescimento da Snake, a velocidade aumenta.
+- **Desafio**: O espaço para manobras vai diminuindo, tornando mais difícil evitar colisões, conforme o seu crecimento.
+- **Fim do Jogo**: O jogo termina quando a Snake bate numa parede ou colide com a sua própria cauda.
 
 ## Exemplo de Gameplay no Modo Clássico
 
