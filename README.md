@@ -44,13 +44,16 @@ O objetivo do jogo é controlar a Snake que vai crescendo ao apanhar os itens, e
 
 - **Tela de Jogo** : Na tela de jogo vai aparecer na parte superior a Pontuaçao atual e a Potuaçao Maxima.  
 
-## Exemplo de Fluxo de Jogo
+## Exemplo de Fluxos de Jogo
 
 - **Início**: O jogador começa com a Snake de tamanho pequeno no centro da tela.
 - **Crescimento**: A medida que a Snake consome Items que aparecem aleatoriamente na tela, ela cresce.
 - **Aumento de Dificuldade**: Com o crescimento da Snake, a velocidade aumenta.
 - **Desafio**: O espaço para manobras vai diminuindo, tornando mais difícil evitar colisões, conforme o seu crecimento.
+- **Obstáculos**: Sao inseridos obstáculos fixos ou móveis no campo de jogo que o jogador deve evitar, tornando o jogo mais desafiante à medida que a cobra cresce.
 - **Fim do Jogo**: O jogo termina quando a Snake bate numa parede ou colide com a sua própria cauda.
+
+
 
 ## Exemplo de Gameplay no Modo Clássico
 
