@@ -4,10 +4,10 @@ O jogo Snake é um clássico dos videojogos, onde o jogador controla uma cobra q
 
 Este projeto está implementado em Java, proporcionando uma experiência interativa. O jogo inclui controlos suaves, aumento de dificuldade e um sistema de pontuação.
 
-**Este Projeto foi implementado por alunos da licenciatua informatica**
-** Diogo Teixeira **
-** Joao Rebelo **
-** Jose Cardoso **
+### Este Projeto foi implementado por alunos da licenciatua informatica
+## Diogo Teixeira 
+## Joao Rebelo 
+## Jose Cardoso 
 
 ### IMPLEMENTED FEATURES
 
