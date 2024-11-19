@@ -11,17 +11,22 @@
 
 ----------------------------------------------------------------------------------------
 ## Descrição
-Este projeto é uma implementação do clássico jogo Snake utilizando a linguagem de programação Java. O objetivo do jogo é controlar uma cobra que cresce ao comer itens de comida, evitando colisões com as paredes e com o próprio corpo.
+Este projeto é uma implementação do clássico jogo Snake utilizando a linguagem de programação Java. 
+O objetivo do jogo é controlar a Snake que vai crescendo ao apanhar os itens, evitando colisões com as paredes e com o próprio corpo.
 
 ## Funcionalidades
-- Controla a cobra através das teclas de seta.
-- Crescimento da cobra ao comer itens de comida.
-- Gera aleatóriamente itens de comida.
-- Detecção de colisões com as paredes e com o próprio corpo da cobra.
+- Controla a cobra através das teclas direcionais.
+- Crescimento da Snake ao apanhar os itens .
+- Gera aleatóriamente itens especiais.
+- Detecção de colisões com as paredes e com o próprio corpo da Snake.
+- 
 
 
 ## Como Jogar
 1. Certifique-se de ter o Java Development Kit (JDK) instalado.
-2. Clone este repositório:
-   ```bash
-   git clone git@github.com:UMaia-POO-24-25/project-tbg02.git
+2. Clone este repositório: git clone git@github.com:UMaia-POO-24-25/project-tbg02.git
+3. No menu 
+
+
+   
+   
