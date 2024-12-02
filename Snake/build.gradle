@@ -10,10 +10,14 @@ repositories {
 }
 
 dependencies {
+    // Biblioteca Lanterna para o terminal
+    implementation group: 'com.googlecode.lanterna', name: 'lanterna', version: '3.1.1'
+
+    // JUnit 5 para testes
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
 }
 
 test {
-    useJUnitPlatform()
+
 }
