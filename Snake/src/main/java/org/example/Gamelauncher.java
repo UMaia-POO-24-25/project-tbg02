@@ -7,5 +7,4 @@ public class Gamelauncher {
         GameView game = new GameView(LARGE_WIDTH, LARGE_HEIGHT);
         game.openMainMenu();
     }
-
 }
