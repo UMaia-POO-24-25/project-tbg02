@@ -125,10 +125,18 @@ public class GameView {
             sleep(100);
         }
     }
+    private void drawWalls() {
+        TextGraphics tg = screen.newTextGraphics();
+        for (Posicao p : state.getWalls()) {
+            tg.setForegroundColor(TextColor.ANSI.GREEN);
+            tg.putString(p.getX(), p.getY(), BORDER_STRING);
+        }
+    }
     private void startGame() {
         Som.stopSound();
         int counter = 0;
         drawWall();
+        drawWalls(); // Add this line
         drawString(4, gameplay_height + 1, "SCORE: ", TextColor.ANSI.CYAN);
         drawScore();
         while (state.isSnakeAlive()) {
@@ -193,6 +201,9 @@ public class GameView {
         if (state.getSnakeBody().stream().filter(p -> !p.equals(head)).anyMatch(head::equals)) {
             return true;
         }
+        if (state.getWalls().stream().anyMatch(head::equals)) {
+            return true;
+        }
         return false;
     }
     private void readKeyStrokeboard() {
@@ -227,6 +238,12 @@ public class GameView {
         tg.putString(4, gameplay_height + 1, scoreText);
     }
     private void drawWall() {
+
+        TextGraphics tg = screen.newTextGraphics();
+        for (Posicao p : state.getWalls()) {
+            tg.setForegroundColor(TextColor.ANSI.GREEN);
+            tg.putString(p.getX(), p.getY(), BORDER_STRING);
+        }
         for (int i = 0; i < gameplay_width; i++) {
             drawString(i, 0, BORDER_STRING, TextColor.ANSI.GREEN);
             drawString(i, gameplay_height, BORDER_STRING, TextColor.ANSI.GREEN);
@@ -236,6 +253,7 @@ public class GameView {
             drawString(gameplay_width, i, BORDER_STRING, TextColor.ANSI.GREEN);
         }
     }
+
     private void drawSnake() {
         TextGraphics tg = screen.newTextGraphics();
         for (Posicao p : state.getSnakeBody()) {

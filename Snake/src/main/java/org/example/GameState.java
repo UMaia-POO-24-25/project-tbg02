@@ -16,6 +16,7 @@ public class GameState {
     // Lista de frutos e dinamites no tabuleiro.
     private LinkedList<Posicao> fruits;
     private LinkedList<Posicao> dynamites;
+    private LinkedList<Posicao> walls;
 
     // Current score
     private int score;
@@ -31,7 +32,10 @@ public class GameState {
         snake = new Snake(Direcao.RIGHT); // Snake starts facing right
         fruits = new LinkedList<>();
         dynamites = new LinkedList<>();
+        walls = new LinkedList<>();
         score = 0;
+        // Add walls to the game
+        generateWalls();
     }
 
     // Getters
@@ -82,6 +86,13 @@ public class GameState {
             return true;
         }
         return false;
+    }
+    private void generateWalls() {
+        // Example: Add walls at specific positions
+        walls.add(new Posicao(10, 10));
+        walls.add(new Posicao(11, 10));
+        walls.add(new Posicao(12, 10));
+        // Add more walls as needed
     }
 
     /**
@@ -149,6 +160,9 @@ public class GameState {
         return new Posicao(x, y);
     }
 
+    public LinkedList<Posicao> getWalls() {
+        return walls;
+    }
     /**
      * Verifica se a posição dada está vazia (não ocupada pela cobra, frutos ou dinamites).
      * @return Verdadeiro se a posição estiver vazia, caso contrário, falso.
