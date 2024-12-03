@@ -189,7 +189,7 @@ public class GameView {
             generateNewFruit();
             fruitsCollected++;
             if (fruitsCollected <= MAX_FRUITS_BEFORE_DIFFICULTY_INCREASE) {
-                game_speed = Math.max(game_speed - SPEED_INCREMENT, MAX_GAME_SPEED); // Increase speed with limit
+                game_speed = Math.max(game_speed - SPEED_INCREMENT, MAX_GAME_SPEED); // Aumenta a velocidade
             }
             if (fruitsCollected % MAX_FRUITS_BEFORE_DIFFICULTY_INCREASE == 0) {
                 increaseDifficulty();
@@ -215,6 +215,7 @@ public class GameView {
             return true;
         }
         return false;
+
     }
     private void readKeyStrokeboard() {
         try {

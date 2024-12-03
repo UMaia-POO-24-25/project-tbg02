@@ -12,7 +12,6 @@ public class GameState {
     private final static int SCORE_PENALTY = 25;
 
     private Snake snake;
-
     // Lista de frutos e dinamites no tabuleiro.
     private LinkedList<Posicao> fruits;
     private LinkedList<Posicao> dynamites;
@@ -82,6 +81,7 @@ public class GameState {
      */
     public boolean snakeAteFruit() {
         if (snake.ateFruit(fruits)) {
+            updateScore(true);
             snake.increaseSize();
             return true;
         }
@@ -101,6 +101,7 @@ public class GameState {
      */
     public boolean snakeSteppedDynamite() {
         if (snake.steppedOverDynamite(dynamites)) {
+            updateScore(false);
             return true;
         }
         return false;
@@ -133,6 +134,13 @@ public class GameState {
     /**
      * Atualiza a pontuação com base nos eventos do jogo.
      */
+    private void updateScore(boolean increase) {
+        if (increase) {
+            score += (snake.getBody().size() * 2 + dynamites.size());
+        } else {
+            score -= SCORE_PENALTY;
+        }
+    }
 
 
     /**
