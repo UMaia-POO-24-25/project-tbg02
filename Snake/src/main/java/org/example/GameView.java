@@ -10,7 +10,6 @@ import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.SwingTerminalFontConfiguration;
 import java.awt.*;
 import java.io.InputStream;
-import java.util.List;
 
 
 public class GameView {
@@ -34,6 +33,9 @@ public class GameView {
     private final int gameplay_height;
     private final int gameplay_width;
     private int game_speed;
+
+
+
     public GameView(int width, int height) {
         try {
             System.out.println("Inicializa GameView com largura: " + width + " e altura:" + height);
