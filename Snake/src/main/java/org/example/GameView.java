@@ -99,18 +99,24 @@ public class GameView {
         tg.putString(10, 9, "########   ###  ######    ###     ###   ###     ##   ########");
         tg.setForegroundColor(TextColor.ANSI.WHITE_BRIGHT);
         String line1 = "###########################";
-        String line2 = "#  Press 'S' to start and #";
-        String line3 = "#  'Q' to quit the game.  #";
-        String line4 = "###########################";
+        String line2 = "#         Press           #";
+        String line3 = "#  'S' to start           #";
+        String line4 = "#  'Q' to quit the game.  #";
+        String line5 = "#  'R' to Ranking.        #";
+        String line6 = "###########################";
         int screenWidth = screen.getTerminalSize().getColumns();
         int x1 = (screenWidth - line1.length()) / 2;
         int x2 = (screenWidth - line2.length()) / 2;
         int x3 = (screenWidth - line3.length()) / 2;
         int x4 = (screenWidth - line4.length()) / 2;
+        int x5 = (screenWidth - line5.length()) / 2;
+        int x6 = (screenWidth - line6.length()) / 2;
         tg.putString(x1, 12, line1);
         tg.putString(x2, 13, line2);
         tg.putString(x3, 14, line3);
         tg.putString(x4, 15, line4);
+        tg.putString(x5, 16, line5);
+        tg.putString(x6, 17, line6);
     }
     private int handleMainMenu() {
         KeyStroke k;
@@ -122,6 +128,8 @@ public class GameView {
                         return 1;
                     case 'q':
                         return 0;
+                    case 'H':
+                        return 2;
                 }
             }
             sleep(100);

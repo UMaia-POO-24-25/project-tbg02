@@ -34,6 +34,7 @@ public class GameState {
         dynamites = new LinkedList<>();
         walls = new LinkedList<>();
         score = 0;
+        //hightscore();
         // Add walls to the game
         generateWalls();
     }
