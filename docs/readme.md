@@ -58,7 +58,11 @@ O objetivo principal do **Modo Clássico** é controlar a cobra, fazendo-a cresc
 
 O jogo termina quando:  
 - A cobra colide com um obstáculo (como uma parede).  
-- A cobra colide consigo mesma (quando a cauda toca a cabeça).  
+- A cobra colide consigo mesma (quando a cauda toca a cabeça).
+
+- Implementaçoes futuras no jogo, quando termina aparece a pontuaçao maxiam de cada jogador 
+
+![Implementaçoes](https://github.com/user-attachments/assets/fb569632-e1a4-4306-9213-132640c3bc33)
 
 ---
 
