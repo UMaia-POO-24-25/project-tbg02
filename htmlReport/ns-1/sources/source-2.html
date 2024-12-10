@@ -1,0 +1,345 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > GameState</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">org.example</a>
+</div>
+
+<h1>Coverage Summary for Class: GameState (org.example)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">GameState</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/20)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/26)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/48)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">GameState$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/21)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/26)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/49)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package org.example;
+&nbsp;
+&nbsp;import java.util.LinkedList;
+&nbsp;import java.util.Random;
+&nbsp;
+&nbsp;/**
+&nbsp; * Representa o estado do jogo da cobra, incluindo a cobra, os frutos, os obstáculos e a pontuação.
+&nbsp; */
+&nbsp;public class GameState {
+&nbsp;
+&nbsp;    // Penalização em pontuação quando a cobra pisa numa dinamite.
+&nbsp;    private final static int SCORE_PENALTY = 25;
+&nbsp;
+&nbsp;    private Snake snake;
+&nbsp;    // Lista de frutos e dinamites no tabuleiro.
+&nbsp;    private LinkedList&lt;Posicao&gt; fruits;
+&nbsp;    private LinkedList&lt;Posicao&gt; dynamites;
+&nbsp;    private LinkedList&lt;Posicao&gt; walls;
+&nbsp;
+&nbsp;    // Current score
+&nbsp;    private int score;
+&nbsp;
+&nbsp;    // Gerador de números aleatórios.
+&nbsp;    private final Random rand;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Instancia um novo objeto GameState.
+&nbsp;     */
+<b class="nc">&nbsp;    public GameState() {</b>
+<b class="nc">&nbsp;        rand = new Random();</b>
+<b class="nc">&nbsp;        snake = new Snake(Direcao.RIGHT); // Snake starts facing right</b>
+<b class="nc">&nbsp;        fruits = new LinkedList&lt;&gt;();</b>
+<b class="nc">&nbsp;        dynamites = new LinkedList&lt;&gt;();</b>
+<b class="nc">&nbsp;        walls = new LinkedList&lt;&gt;();</b>
+<b class="nc">&nbsp;        score = 0;</b>
+&nbsp;        //hightscore();
+&nbsp;        // Add walls to the game
+<b class="nc">&nbsp;        generateWalls();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // Getters
+&nbsp;    public LinkedList&lt;Posicao&gt; getFruits() {
+<b class="nc">&nbsp;        return fruits;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public LinkedList&lt;Posicao&gt; getDynamites() {
+<b class="nc">&nbsp;        return dynamites;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public int getScore() {
+<b class="nc">&nbsp;        return score;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public boolean isSnakeAlive() {
+<b class="nc">&nbsp;        return snake.isAlive();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void killSnake() {
+<b class="nc">&nbsp;        snake.kill();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void moveSnake() {
+<b class="nc">&nbsp;        snake.move();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public LinkedList&lt;Posicao&gt; getSnakeBody() {
+<b class="nc">&nbsp;        return snake.getBody();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public Posicao getSnakeHead() {
+<b class="nc">&nbsp;        return (Posicao) snake.getHead();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public Posicao getSnakeTail() {
+<b class="nc">&nbsp;        return (Posicao) snake.getTail();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Verifica se a cobra comeu um fruto. Se sim, aumenta a pontuação e o tamanho da cobra
+&nbsp;     *
+&nbsp;     * @return Verdadeiro se a cobra comeu um fruto, caso contrário, falso.
+&nbsp;     */
+&nbsp;    public boolean snakeAteFruit() {
+<b class="nc">&nbsp;        if (snake.ateFruit(fruits)) {</b>
+<b class="nc">&nbsp;            updateScore(true);</b>
+<b class="nc">&nbsp;            snake.increaseSize();</b>
+<b class="nc">&nbsp;            return true;</b>
+&nbsp;        }
+<b class="nc">&nbsp;        return false;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private void generateWalls() {
+&nbsp;        // Example: Add walls at specific positions
+<b class="nc">&nbsp;        walls.add(new Posicao(10, 10));</b>
+<b class="nc">&nbsp;        walls.add(new Posicao(11, 10));</b>
+<b class="nc">&nbsp;        walls.add(new Posicao(12, 10));</b>
+&nbsp;        // Add more walls as needed
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Verifica se a cobra pisou numa dinamite. Se sim, diminui a pontuação
+&nbsp;     *
+&nbsp;     * @return Verdadeiro se a cobra pisou numa dinamite, caso contrário, falso.
+&nbsp;     */
+&nbsp;    public boolean snakeSteppedDynamite() {
+<b class="nc">&nbsp;        if (snake.steppedOverDynamite(dynamites)) {</b>
+<b class="nc">&nbsp;            updateScore(false);</b>
+<b class="nc">&nbsp;            return true;</b>
+&nbsp;        }
+<b class="nc">&nbsp;        return false;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Define a direção da cobra, impedindo-a de virar para a direção oposta.
+&nbsp;     */
+&nbsp;    public void setDirection(Direcao dir) {
+<b class="nc">&nbsp;        if (dir == null) return;</b>
+&nbsp;
+<b class="nc">&nbsp;        switch (dir) {</b>
+&nbsp;            case UP:
+<b class="nc">&nbsp;                if (snake.getDirection() != Direcao.DOWN) snake.setDirection(Direcao.UP);</b>
+&nbsp;                break;
+&nbsp;            case DOWN:
+<b class="nc">&nbsp;                if (snake.getDirection() != Direcao.UP) snake.setDirection(Direcao.DOWN);</b>
+&nbsp;                break;
+&nbsp;            case LEFT:
+<b class="nc">&nbsp;                if (snake.getDirection() != Direcao.RIGHT) snake.setDirection(Direcao.LEFT);</b>
+&nbsp;                break;
+&nbsp;            case RIGHT:
+<b class="nc">&nbsp;                if (snake.getDirection() != Direcao.LEFT) snake.setDirection(Direcao.RIGHT);</b>
+&nbsp;                break;
+&nbsp;            default:
+<b class="nc">&nbsp;                throw new IllegalArgumentException(&quot;Invalid direction&quot;);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Atualiza a pontuação com base nos eventos do jogo.
+&nbsp;     */
+&nbsp;    private void updateScore(boolean increase) {
+<b class="nc">&nbsp;        if (increase) {</b>
+<b class="nc">&nbsp;            score += (snake.getBody().size() * 2 + dynamites.size());</b>
+&nbsp;        } else {
+<b class="nc">&nbsp;            score -= SCORE_PENALTY;</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Gera um número inteiro aleatório entre min (inclusivo) e max (exclusivo).
+&nbsp;     *
+&nbsp;     * @return Um número inteiro aleatório no intervalo [min, max).
+&nbsp;     */
+&nbsp;    private int randomNumber(int min, int max) {
+<b class="nc">&nbsp;        return rand.nextInt(max - min) + min;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Gera uma posição aleatória dentro da área do jogo.
+&nbsp;     *
+&nbsp;     * @return Uma nova posição aleatória.
+&nbsp;     */
+&nbsp;    private Posicao generateRandomPosition(int max_x, int max_y) {
+<b class="nc">&nbsp;        int x = randomNumber(1, max_x);</b>
+<b class="nc">&nbsp;        int y = randomNumber(1, max_y);</b>
+<b class="nc">&nbsp;        return new Posicao(x, y);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public LinkedList&lt;Posicao&gt; getWalls() {
+<b class="nc">&nbsp;        return walls;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Verifica se a posição dada está vazia (não ocupada pela cobra, frutos ou dinamites).
+&nbsp;     *
+&nbsp;     * @return Verdadeiro se a posição estiver vazia, caso contrário, falso.
+&nbsp;     */
+&nbsp;    private boolean isEmptyPosition(Posicao p) {
+<b class="nc">&nbsp;        return !(snake.isBody((Posicao) p) || fruits.contains(p) || dynamites.contains(p));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Gera uma posição aleatória para um novo objeto, garantindo que não está já ocupada.
+&nbsp;     *
+&nbsp;     * @return Uma posição válida para um novo objeto.
+&nbsp;     */
+&nbsp;    public Posicao generateRandomObject(int x_max, int y_max) {
+&nbsp;        Posicao p;
+&nbsp;        do {
+<b class="nc">&nbsp;            p = generateRandomPosition(x_max, y_max);</b>
+<b class="nc">&nbsp;        } while (!isEmptyPosition(p));</b>
+<b class="nc">&nbsp;        return p;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-12-10 22:42</div>
+</div>
+</body>
+</html>

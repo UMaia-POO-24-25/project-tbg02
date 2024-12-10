@@ -1,0 +1,259 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > Snake</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">org.example</a>
+</div>
+
+<h1>Coverage Summary for Class: Snake (org.example)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Snake</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (13/13)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    50%
+  </span>
+  <span class="absValue">
+    (3/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    86,2%
+  </span>
+  <span class="absValue">
+    (25/29)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">Snake$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (14/14)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    50%
+  </span>
+  <span class="absValue">
+    (3/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    86,7%
+  </span>
+  <span class="absValue">
+    (26/30)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package org.example;
+&nbsp;
+&nbsp;import java.util.LinkedList;
+&nbsp;
+&nbsp;/**
+&nbsp; * Representa o objeto Snake.
+&nbsp; */
+&nbsp;public class Snake {
+&nbsp;    // Comprimento inicial da cobra.
+&nbsp;    private final static int SNAKE_INITIAL_SIZE = 4;
+&nbsp;    // Snake&#39;s body positions. The head is the last element in the list.
+&nbsp;    private LinkedList&lt;Posicao&gt; body;
+&nbsp;    // Posições do corpo da cobra. A cabeça é o último elemento da lista.
+&nbsp;    private Direcao direcao;
+&nbsp;    // Indica se a cobra está viva.
+&nbsp;    private boolean alive;
+&nbsp;    /**
+&nbsp;     * Instancia um novo objeto Snake voltado para a direção dada.
+&nbsp;     */
+<b class="fc">&nbsp;    public Snake(Direcao starting_direcao) {</b>
+<b class="fc">&nbsp;        body = new LinkedList&lt;&gt;();</b>
+&nbsp;        // Inicialize o corpo da cobra, começando numa posição predefinida.
+<b class="fc">&nbsp;        for (int i = 0; i &lt; SNAKE_INITIAL_SIZE; i++) {</b>
+<b class="fc">&nbsp;            body.add(new Posicao(i + 3, 15));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        direcao = starting_direcao;</b>
+<b class="fc">&nbsp;        alive = true;</b>
+&nbsp;    }
+&nbsp;    // Getters e setters
+&nbsp;    public LinkedList&lt;Posicao&gt; getBody() {
+<b class="fc">&nbsp;        return body;</b>
+&nbsp;    }
+&nbsp;    public Posicao getHead() {
+<b class="fc">&nbsp;        return body.getLast();</b>
+&nbsp;    }
+&nbsp;    public Posicao getTail() {
+<b class="fc">&nbsp;        return body.getFirst();</b>
+&nbsp;    }
+&nbsp;    public void setDirection(Direcao direcao) {
+<b class="fc">&nbsp;        this.direcao = direcao;</b>
+&nbsp;    }
+&nbsp;    public Direcao getDirection() {
+<b class="fc">&nbsp;        return direcao;</b>
+&nbsp;    }
+&nbsp;    public boolean isAlive() {
+<b class="fc">&nbsp;        return alive;</b>
+&nbsp;    }
+&nbsp;    public void kill() {
+<b class="fc">&nbsp;        alive = false;</b>
+&nbsp;    }
+&nbsp;    /**
+&nbsp;     * Move a cobra na direção atual.
+&nbsp;     * Remove a cauda e adicione uma nova cabeça com base na direção.
+&nbsp;     */
+&nbsp;    public void move() {
+<b class="fc">&nbsp;        Posicao head = getHead();</b>
+<b class="fc">&nbsp;        body.removeFirst(); // Remove the tail</b>
+&nbsp;        // Determine a nova posição da cabeça.
+&nbsp;        Posicao newHead;
+<b class="pc">&nbsp;        switch (direcao) {</b>
+&nbsp;            case UP:
+<b class="nc">&nbsp;                newHead = new Posicao(head.getX(), head.getY() - 1);</b>
+&nbsp;                break;
+&nbsp;            case DOWN:
+<b class="nc">&nbsp;                newHead = new Posicao(head.getX(), head.getY() + 1);</b>
+&nbsp;                break;
+&nbsp;            case LEFT:
+<b class="nc">&nbsp;                newHead = new Posicao(head.getX() - 1, head.getY());</b>
+&nbsp;                break;
+&nbsp;            case RIGHT:
+<b class="fc">&nbsp;                newHead = new Posicao(head.getX() + 1, head.getY());</b>
+&nbsp;                break;
+&nbsp;            default:
+<b class="nc">&nbsp;                throw new IllegalArgumentException(&quot;Direção Inválida&quot;);</b>
+&nbsp;        }
+&nbsp;        // Nova cabeça
+<b class="fc">&nbsp;        body.addLast(newHead);</b>
+&nbsp;    }
+&nbsp;    /**
+&nbsp;     * Verifica se uma determinada posição faz parte do corpo da cobra.
+&nbsp;     * @return Verdadeiro se a posição fizer parte do corpo da cobra, caso contrário, falso.
+&nbsp;     */
+&nbsp;    public boolean isBody(Posicao p) {
+<b class="fc">&nbsp;        return body.contains(p);</b>
+&nbsp;    }
+&nbsp;    /**
+&nbsp;     * Verifica se a cabeça da cobra está na mesma posição que uma fruta.
+&nbsp;     * Se for o caso, remove a fruta da lista.
+&nbsp;     */
+&nbsp;    public boolean ateFruit(LinkedList&lt;Posicao&gt; fruits) {
+<b class="fc">&nbsp;        Posicao head = getHead();</b>
+<b class="fc">&nbsp;        return fruits.removeIf(head::equals);</b>
+&nbsp;    }
+&nbsp;    /**
+&nbsp;     * Verifica se a cabeça da cobra está na mesma posição que uma dinamite.
+&nbsp;     */
+&nbsp;    public boolean steppedOverDynamite(LinkedList&lt;Posicao&gt; dynamites) {
+<b class="fc">&nbsp;        Posicao head = getHead();</b>
+<b class="fc">&nbsp;        return dynamites.removeIf(head::equals);</b>
+&nbsp;    }
+&nbsp;    /**
+&nbsp;     * Aumenta o tamanho da cobra adicionando um novo segmento à sua cauda.
+&nbsp;     */
+&nbsp;    public void increaseSize() {
+<b class="fc">&nbsp;        Posicao tail = getTail();</b>
+<b class="fc">&nbsp;        body.addFirst(new Posicao(tail.getX(), tail.getY()));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-12-10 22:42</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,484 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > GameView</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">org.example</a>
+</div>
+
+<h1>Coverage Summary for Class: GameView (org.example)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">GameView</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/23)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/61)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/190)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">GameView$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/24)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/61)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/191)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package org.example;
+&nbsp;
+&nbsp;import com.googlecode.lanterna.TextColor;
+&nbsp;import com.googlecode.lanterna.graphics.TextGraphics;
+&nbsp;import com.googlecode.lanterna.input.KeyStroke;
+&nbsp;import com.googlecode.lanterna.screen.Screen;
+&nbsp;import com.googlecode.lanterna.screen.TerminalScreen;
+&nbsp;import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
+&nbsp;import com.googlecode.lanterna.terminal.Terminal;
+&nbsp;import com.googlecode.lanterna.terminal.swing.SwingTerminalFontConfiguration;
+&nbsp;import java.awt.*;
+&nbsp;import java.io.InputStream;
+&nbsp;
+&nbsp;
+&nbsp;public class GameView {
+&nbsp;    private final static String EMPTY_STRING = &quot; &quot;;
+&nbsp;    private final static String BORDER_STRING = &quot;▒&quot;;
+&nbsp;    private final static String SNAKE_HEAD_STRING = &quot;@&quot;;
+&nbsp;    private final static String SNAKE_BODY_STRING = &quot;O&quot;;
+&nbsp;    private final static String FRUIT_STRING = &quot;\u2022&quot;;
+&nbsp;    private final static String DYNAMITE_STRING = &quot;f&quot;;
+&nbsp;    private final static int INITIAL_GAME_SPEED = 90;
+&nbsp;    private final static int SPEED_INCREMENT = 5;
+&nbsp;    private final static int NEW_OBJECT_TIME_RATE = 6000;
+&nbsp;    private final static int X_COORDINATE_OFFSET = 1;
+&nbsp;    private final static int Y_COORDINATE_OFFSET = 2;
+<b class="nc">&nbsp;    private int fruitsCollected = 0;</b>
+&nbsp;    private final static int MAX_FRUITS_BEFORE_DIFFICULTY_INCREASE = 7;
+&nbsp;    private final static int MAX_GAME_SPEED = 30; // Example maximum speed
+&nbsp;    static Terminal terminal;
+&nbsp;    static Screen screen;
+&nbsp;    private GameState state;
+&nbsp;    private final int gameplay_height;
+&nbsp;    private final int gameplay_width;
+&nbsp;    private int game_speed;
+&nbsp;
+&nbsp;
+&nbsp;
+<b class="nc">&nbsp;    public GameView(int width, int height) {</b>
+&nbsp;        try {
+<b class="nc">&nbsp;            System.out.println(&quot;Inicializa GameView com largura: &quot; + width + &quot; e altura:&quot; + height);</b>
+<b class="nc">&nbsp;            if (width &lt;= 0 || height &lt;= 0) {</b>
+<b class="nc">&nbsp;                throw new IllegalArgumentException(&quot;A largura e a altura devem ser maiores que 0.&quot;);</b>
+&nbsp;            }
+&nbsp;            // Load custom font
+<b class="nc">&nbsp;            InputStream fontStream = getClass().getResourceAsStream(&quot;/fonts/Fonte.ttf&quot;);</b>
+<b class="nc">&nbsp;            if (fontStream == null) {</b>
+<b class="nc">&nbsp;                throw new RuntimeException(&quot;Fonte não encontrada&quot;);</b>
+&nbsp;            }
+<b class="nc">&nbsp;            Font customFont = Font.createFont(Font.TRUETYPE_FONT, fontStream).deriveFont(24f);</b>
+<b class="nc">&nbsp;            SwingTerminalFontConfiguration fontConfig = SwingTerminalFontConfiguration.newInstance(customFont);</b>
+&nbsp;            // Create terminal with custom font configuration
+<b class="nc">&nbsp;            terminal = new DefaultTerminalFactory()</b>
+<b class="nc">&nbsp;                    .setTerminalEmulatorFontConfiguration(fontConfig)</b>
+<b class="nc">&nbsp;                    .createTerminal();</b>
+<b class="nc">&nbsp;            System.out.println(&quot;Terminal inicio com a fonte nova&quot;);</b>
+<b class="nc">&nbsp;            gameplay_width = width - X_COORDINATE_OFFSET;</b>
+<b class="nc">&nbsp;            gameplay_height = height - Y_COORDINATE_OFFSET;</b>
+<b class="nc">&nbsp;            System.out.println(&quot;Dimensões do jogo definidas: largura = &quot; + gameplay_width + &quot;, altura = &quot; + gameplay_height);</b>
+<b class="nc">&nbsp;            screen = new TerminalScreen(terminal);</b>
+<b class="nc">&nbsp;            screen.setCursorPosition(null);</b>
+<b class="nc">&nbsp;            screen.startScreen();</b>
+<b class="nc">&nbsp;            System.out.println(&quot;Ecrã iniciado..&quot;);</b>
+<b class="nc">&nbsp;        } catch (Exception e) {</b>
+<b class="nc">&nbsp;            throw new RuntimeException(&quot;Erro ao inicializar o ecrã do jogo.&quot;, e);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;    private void clearScreen() {
+&nbsp;        try {
+<b class="nc">&nbsp;            screen.clear();</b>
+<b class="nc">&nbsp;        } catch (Exception e) {</b>
+<b class="nc">&nbsp;            e.printStackTrace();</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;    public void openMainMenu() {
+<b class="nc">&nbsp;        game_speed = INITIAL_GAME_SPEED;</b>
+<b class="nc">&nbsp;        renderMainMenu();</b>
+<b class="nc">&nbsp;        refreshScreen();</b>
+<b class="nc">&nbsp;        int selected_option = handleMainMenu();</b>
+<b class="nc">&nbsp;        if (selected_option == 1) {</b>
+<b class="nc">&nbsp;            clearScreen();</b>
+<b class="nc">&nbsp;            state = new GameState();</b>
+<b class="nc">&nbsp;            Som.playSoundLoop(&quot;/sounds/start.wav&quot;);</b>
+<b class="nc">&nbsp;            startGame();</b>
+&nbsp;        } else {
+<b class="nc">&nbsp;            exitGame();</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;    private void renderMainMenu() {
+<b class="nc">&nbsp;        TextGraphics tg = screen.newTextGraphics();</b>
+<b class="nc">&nbsp;        tg.setForegroundColor(TextColor.ANSI.GREEN_BRIGHT);</b>
+<b class="nc">&nbsp;        tg.putString(10, 2, &quot;########   #######  ###   ###########   ###    ##    ########&quot;);</b>
+<b class="nc">&nbsp;        tg.putString(10, 3, &quot;##         ###  ##  ###   ###     ###   ###   ##     ###    &quot;);</b>
+<b class="nc">&nbsp;        tg.putString(10, 4, &quot;##         ###  ##  ###   ###     ###   ###  ##      ###    &quot;);</b>
+<b class="nc">&nbsp;        tg.putString(10, 5, &quot;##         ###  ##  ###   ###########   #######      ########&quot;);</b>
+<b class="nc">&nbsp;        tg.putString(10, 6, &quot;########   ###  ##  ###   ###     ###   ###  ##      ###    &quot;);</b>
+<b class="nc">&nbsp;        tg.putString(10, 7, &quot;      ##   ###  ##  ###   ###     ###   ###   ##     ###    &quot;);</b>
+<b class="nc">&nbsp;        tg.putString(10, 8, &quot;      ##   ###  ######    ###     ###   ###    ##    ###    &quot;);</b>
+<b class="nc">&nbsp;        tg.putString(10, 9, &quot;########   ###  ######    ###     ###   ###     ##   ########&quot;);</b>
+<b class="nc">&nbsp;        tg.setForegroundColor(TextColor.ANSI.WHITE_BRIGHT);</b>
+<b class="nc">&nbsp;        String line1 = &quot;###########################&quot;;</b>
+<b class="nc">&nbsp;        String line2 = &quot;#         Press           #&quot;;</b>
+<b class="nc">&nbsp;        String line3 = &quot;#  &#39;S&#39; to start           #&quot;;</b>
+<b class="nc">&nbsp;        String line4 = &quot;#  &#39;Q&#39; to quit the game.  #&quot;;</b>
+<b class="nc">&nbsp;        String line5 = &quot;#  &#39;R&#39; to Ranking.        #&quot;;</b>
+<b class="nc">&nbsp;        String line6 = &quot;###########################&quot;;</b>
+<b class="nc">&nbsp;        int screenWidth = screen.getTerminalSize().getColumns();</b>
+<b class="nc">&nbsp;        int x1 = (screenWidth - line1.length()) / 2;</b>
+<b class="nc">&nbsp;        int x2 = (screenWidth - line2.length()) / 2;</b>
+<b class="nc">&nbsp;        int x3 = (screenWidth - line3.length()) / 2;</b>
+<b class="nc">&nbsp;        int x4 = (screenWidth - line4.length()) / 2;</b>
+<b class="nc">&nbsp;        int x5 = (screenWidth - line5.length()) / 2;</b>
+<b class="nc">&nbsp;        int x6 = (screenWidth - line6.length()) / 2;</b>
+<b class="nc">&nbsp;        tg.putString(x1, 12, line1);</b>
+<b class="nc">&nbsp;        tg.putString(x2, 13, line2);</b>
+<b class="nc">&nbsp;        tg.putString(x3, 14, line3);</b>
+<b class="nc">&nbsp;        tg.putString(x4, 15, line4);</b>
+<b class="nc">&nbsp;        tg.putString(x5, 16, line5);</b>
+<b class="nc">&nbsp;        tg.putString(x6, 17, line6);</b>
+&nbsp;    }
+&nbsp;    private int handleMainMenu() {
+&nbsp;        KeyStroke k;
+&nbsp;        while (true) {
+<b class="nc">&nbsp;            k = readKeyStrokeInput();</b>
+<b class="nc">&nbsp;            if (k != null) {</b>
+<b class="nc">&nbsp;                switch (k.getCharacter()) {</b>
+&nbsp;                    case &#39;s&#39;:
+<b class="nc">&nbsp;                        return 1;</b>
+&nbsp;                    case &#39;q&#39;:
+<b class="nc">&nbsp;                        return 0;</b>
+&nbsp;                    case &#39;H&#39;:
+<b class="nc">&nbsp;                        return 2;</b>
+&nbsp;                }
+&nbsp;            }
+<b class="nc">&nbsp;            sleep(100);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;    private void drawWalls() {
+<b class="nc">&nbsp;        TextGraphics tg = screen.newTextGraphics();</b>
+<b class="nc">&nbsp;        for (Posicao p : state.getWalls()) {</b>
+<b class="nc">&nbsp;            tg.setForegroundColor(TextColor.ANSI.GREEN);</b>
+<b class="nc">&nbsp;            tg.putString(p.getX(), p.getY(), BORDER_STRING);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;    private void startGame() {
+<b class="nc">&nbsp;        Som.stopSound();</b>
+<b class="nc">&nbsp;        int counter = 0;</b>
+<b class="nc">&nbsp;        drawWall();</b>
+<b class="nc">&nbsp;        drawWalls(); // Add this line</b>
+<b class="nc">&nbsp;        drawString(4, gameplay_height + 1, &quot;SCORE: &quot;, TextColor.ANSI.CYAN);</b>
+<b class="nc">&nbsp;        drawScore();</b>
+<b class="nc">&nbsp;        while (state.isSnakeAlive()) {</b>
+<b class="nc">&nbsp;            if (counter % NEW_OBJECT_TIME_RATE == 0) {</b>
+<b class="nc">&nbsp;                generateNewFruit();</b>
+<b class="nc">&nbsp;                generateNewDynamite();</b>
+&nbsp;            }
+<b class="nc">&nbsp;            readKeyStrokeboard();</b>
+<b class="nc">&nbsp;            if (counter % game_speed == 0) updateGame();</b>
+<b class="nc">&nbsp;            sleep(1);</b>
+<b class="nc">&nbsp;            counter++;</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;    private void increaseDifficulty() {
+&nbsp;        // Example: Draw a few walls inside the game area
+&nbsp;        // You can add more walls or change their positions as needed
+<b class="nc">&nbsp;        drawString(10 + (fruitsCollected / MAX_FRUITS_BEFORE_DIFFICULTY_INCREASE) * 2, 10, BORDER_STRING, TextColor.ANSI.GREEN);</b>
+<b class="nc">&nbsp;        drawString(11 + (fruitsCollected / MAX_FRUITS_BEFORE_DIFFICULTY_INCREASE) * 2, 10, BORDER_STRING, TextColor.ANSI.GREEN);</b>
+<b class="nc">&nbsp;        drawString(12 + (fruitsCollected / MAX_FRUITS_BEFORE_DIFFICULTY_INCREASE) * 2, 10, BORDER_STRING, TextColor.ANSI.GREEN);</b>
+<b class="nc">&nbsp;        drawString(20 + (fruitsCollected / MAX_FRUITS_BEFORE_DIFFICULTY_INCREASE) * 2, 15, BORDER_STRING, TextColor.ANSI.GREEN);</b>
+<b class="nc">&nbsp;        drawString(21 + (fruitsCollected / MAX_FRUITS_BEFORE_DIFFICULTY_INCREASE) * 2, 15, BORDER_STRING, TextColor.ANSI.GREEN);</b>
+<b class="nc">&nbsp;        drawString(22 + (fruitsCollected / MAX_FRUITS_BEFORE_DIFFICULTY_INCREASE) * 2, 15, BORDER_STRING, TextColor.ANSI.GREEN);</b>
+<b class="nc">&nbsp;        drawString(30 + (fruitsCollected / MAX_FRUITS_BEFORE_DIFFICULTY_INCREASE) * 2, 20, BORDER_STRING, TextColor.ANSI.GREEN);</b>
+<b class="nc">&nbsp;        drawString(31 + (fruitsCollected / MAX_FRUITS_BEFORE_DIFFICULTY_INCREASE) * 2, 20, BORDER_STRING, TextColor.ANSI.GREEN);</b>
+<b class="nc">&nbsp;        drawString(32 + (fruitsCollected / MAX_FRUITS_BEFORE_DIFFICULTY_INCREASE) * 2, 20, BORDER_STRING, TextColor.ANSI.GREEN);</b>
+&nbsp;    }
+&nbsp;    private void updateGame() {
+<b class="nc">&nbsp;        Posicao tail = state.getSnakeTail();</b>
+<b class="nc">&nbsp;        clearStringAt(tail.getX(), tail.getY());</b>
+<b class="nc">&nbsp;        state.moveSnake();</b>
+<b class="nc">&nbsp;        drawSnake();</b>
+<b class="nc">&nbsp;        Posicao head = state.getSnakeHead();</b>
+<b class="nc">&nbsp;        if (checkCollision()) {</b>
+<b class="nc">&nbsp;            highlightCrashPosition(head.getX(), head.getY());</b>
+<b class="nc">&nbsp;            state.killSnake();</b>
+<b class="nc">&nbsp;            Som.playSound(&quot;/sounds/gameover.wav&quot;);</b>
+<b class="nc">&nbsp;            openMainMenu();</b>
+<b class="nc">&nbsp;        } else if (state.snakeAteFruit()) {</b>
+<b class="nc">&nbsp;            drawScore();</b>
+<b class="nc">&nbsp;            generateNewFruit();</b>
+<b class="nc">&nbsp;            fruitsCollected++;</b>
+<b class="nc">&nbsp;            if (fruitsCollected &lt;= MAX_FRUITS_BEFORE_DIFFICULTY_INCREASE) {</b>
+<b class="nc">&nbsp;                game_speed = Math.max(game_speed - SPEED_INCREMENT, MAX_GAME_SPEED); // Aumenta a velocidade</b>
+&nbsp;            }
+<b class="nc">&nbsp;            if (fruitsCollected % MAX_FRUITS_BEFORE_DIFFICULTY_INCREASE == 0) {</b>
+<b class="nc">&nbsp;                increaseDifficulty();</b>
+&nbsp;            }
+<b class="nc">&nbsp;        } else if (state.snakeSteppedDynamite()) {</b>
+<b class="nc">&nbsp;            highlightCrashPosition(head.getX(), head.getY());</b>
+<b class="nc">&nbsp;            state.killSnake();</b>
+<b class="nc">&nbsp;            Som.playSound(&quot;/sounds/explosion.wav&quot;);</b>
+<b class="nc">&nbsp;            openMainMenu();</b>
+&nbsp;        }
+<b class="nc">&nbsp;        refreshScreen();</b>
+&nbsp;    }
+&nbsp;    private boolean checkCollision() {
+<b class="nc">&nbsp;        Posicao head = state.getSnakeHead();</b>
+<b class="nc">&nbsp;        if (head.getX() &lt;= 0 || head.getX() &gt;= gameplay_width ||</b>
+<b class="nc">&nbsp;                head.getY() &lt;= 0 || head.getY() &gt;= gameplay_height) {</b>
+<b class="nc">&nbsp;            return true;</b>
+&nbsp;        }
+<b class="nc">&nbsp;        if (state.getSnakeBody().stream().filter(p -&gt; !p.equals(head)).anyMatch(head::equals)) {</b>
+<b class="nc">&nbsp;            return true;</b>
+&nbsp;        }
+<b class="nc">&nbsp;        if (state.getWalls().stream().anyMatch(head::equals)) {</b>
+<b class="nc">&nbsp;            return true;</b>
+&nbsp;        }
+<b class="nc">&nbsp;        return false;</b>
+&nbsp;
+&nbsp;    }
+&nbsp;    private void readKeyStrokeboard() {
+&nbsp;        try {
+<b class="nc">&nbsp;            KeyStroke keyStroke = terminal.pollInput();</b>
+<b class="nc">&nbsp;            if (keyStroke != null) {</b>
+<b class="nc">&nbsp;                switch (keyStroke.getKeyType()) {</b>
+&nbsp;                    case ArrowUp:
+<b class="nc">&nbsp;                        state.setDirection(Direcao.UP);</b>
+&nbsp;                        break;
+&nbsp;                    case ArrowDown:
+<b class="nc">&nbsp;                        state.setDirection(Direcao.DOWN);</b>
+&nbsp;                        break;
+&nbsp;                    case ArrowLeft:
+<b class="nc">&nbsp;                        state.setDirection(Direcao.LEFT);</b>
+&nbsp;                        break;
+&nbsp;                    case ArrowRight:
+<b class="nc">&nbsp;                        state.setDirection(Direcao.RIGHT);</b>
+&nbsp;                        break;
+&nbsp;                    default:
+&nbsp;                        break;
+&nbsp;                }
+&nbsp;            }
+<b class="nc">&nbsp;        } catch (Exception e) {</b>
+<b class="nc">&nbsp;            e.printStackTrace();</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;    private void drawScore() {
+<b class="nc">&nbsp;        TextGraphics tg = screen.newTextGraphics();</b>
+<b class="nc">&nbsp;        tg.setForegroundColor(TextColor.ANSI.CYAN);</b>
+<b class="nc">&nbsp;        String scoreText = &quot;SCORE: &quot; + state.getScore();</b>
+<b class="nc">&nbsp;        tg.putString(4, gameplay_height + 1, scoreText);</b>
+&nbsp;    }
+&nbsp;    private void drawWall() {
+&nbsp;
+<b class="nc">&nbsp;        TextGraphics tg = screen.newTextGraphics();</b>
+<b class="nc">&nbsp;        for (Posicao p : state.getWalls()) {</b>
+<b class="nc">&nbsp;            tg.setForegroundColor(TextColor.ANSI.GREEN);</b>
+<b class="nc">&nbsp;            tg.putString(p.getX(), p.getY(), BORDER_STRING);</b>
+&nbsp;        }
+<b class="nc">&nbsp;        for (int i = 0; i &lt; gameplay_width; i++) {</b>
+<b class="nc">&nbsp;            drawString(i, 0, BORDER_STRING, TextColor.ANSI.GREEN);</b>
+<b class="nc">&nbsp;            drawString(i, gameplay_height, BORDER_STRING, TextColor.ANSI.GREEN);</b>
+&nbsp;        }
+<b class="nc">&nbsp;        for (int i = 0; i &lt;= gameplay_height; i++) {</b>
+<b class="nc">&nbsp;            drawString(0, i, BORDER_STRING, TextColor.ANSI.GREEN);</b>
+<b class="nc">&nbsp;            drawString(gameplay_width, i, BORDER_STRING, TextColor.ANSI.GREEN);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    private void drawSnake() {
+<b class="nc">&nbsp;        TextGraphics tg = screen.newTextGraphics();</b>
+<b class="nc">&nbsp;        for (Posicao p : state.getSnakeBody()) {</b>
+<b class="nc">&nbsp;            if (p.equals(state.getSnakeHead())) {</b>
+<b class="nc">&nbsp;                tg.setForegroundColor(TextColor.ANSI.GREEN);</b>
+<b class="nc">&nbsp;                tg.putString(p.getX(), p.getY(), SNAKE_HEAD_STRING);</b>
+&nbsp;            } else {
+<b class="nc">&nbsp;                tg.setForegroundColor(TextColor.ANSI.GREEN);</b>
+<b class="nc">&nbsp;                tg.putString(p.getX(), p.getY(), SNAKE_BODY_STRING);</b>
+&nbsp;            }
+&nbsp;        }
+&nbsp;    }
+&nbsp;    private void highlightCrashPosition(int x, int y) {
+<b class="nc">&nbsp;        TextGraphics tg = screen.newTextGraphics();</b>
+<b class="nc">&nbsp;        tg.setForegroundColor(TextColor.ANSI.RED);</b>
+<b class="nc">&nbsp;        tg.putString(x, y, &quot;X&quot;);</b>
+&nbsp;    }
+&nbsp;    private void drawString(int x, int y, String string, TextColor color) {
+<b class="nc">&nbsp;        TextGraphics tg = screen.newTextGraphics();</b>
+<b class="nc">&nbsp;        if (color != null) tg.setForegroundColor(color);</b>
+<b class="nc">&nbsp;        tg.putString(x, y, string);</b>
+&nbsp;    }
+&nbsp;    private void generateNewFruit() {
+<b class="nc">&nbsp;        Posicao newFruitPosicao = state.generateRandomObject(gameplay_width - 1, gameplay_height - 1);</b>
+<b class="nc">&nbsp;        state.getFruits().add(newFruitPosicao);</b>
+<b class="nc">&nbsp;        drawString(newFruitPosicao.getX(), newFruitPosicao.getY(), FRUIT_STRING, TextColor.ANSI.RED);</b>
+&nbsp;    }
+&nbsp;    private void generateNewDynamite() {
+<b class="nc">&nbsp;        Posicao newDynamitePosicao = state.generateRandomObject(gameplay_width - 1, gameplay_height - 1);</b>
+<b class="nc">&nbsp;        state.getDynamites().add(newDynamitePosicao);</b>
+<b class="nc">&nbsp;        drawString(newDynamitePosicao.getX(), newDynamitePosicao.getY(), DYNAMITE_STRING, TextColor.ANSI.WHITE_BRIGHT);</b>
+&nbsp;    }
+&nbsp;    private void clearStringAt(int x, int y) {
+<b class="nc">&nbsp;        drawString(x, y, EMPTY_STRING, null);</b>
+&nbsp;    }
+&nbsp;    private void refreshScreen() {
+&nbsp;        try {
+<b class="nc">&nbsp;            screen.refresh();</b>
+<b class="nc">&nbsp;        } catch (Exception e) {</b>
+<b class="nc">&nbsp;            e.printStackTrace();</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;    private void exitGame() {
+&nbsp;        try {
+<b class="nc">&nbsp;            Som.stopSound(); //stops loops sound</b>
+<b class="nc">&nbsp;            screen.stopScreen();</b>
+<b class="nc">&nbsp;        } catch (Exception e) {</b>
+<b class="nc">&nbsp;            e.printStackTrace();</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;    private KeyStroke readKeyStrokeInput() {
+&nbsp;        try {
+<b class="nc">&nbsp;            return terminal.readInput();</b>
+<b class="nc">&nbsp;        } catch (Exception e) {</b>
+<b class="nc">&nbsp;            e.printStackTrace();</b>
+<b class="nc">&nbsp;            return null;</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;    private void sleep(int ms) {
+&nbsp;        try {
+<b class="nc">&nbsp;            Thread.sleep(ms);</b>
+<b class="nc">&nbsp;        } catch (InterruptedException e) {</b>
+<b class="nc">&nbsp;            Thread.currentThread().interrupt();</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-12-10 22:42</div>
+</div>
+</body>
+</html>
