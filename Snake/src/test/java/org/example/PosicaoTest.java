@@ -54,4 +54,3 @@ class PosicaoTest {
         assertEquals(expectedHashCode, posicao.hashCode());
     }
 }
-

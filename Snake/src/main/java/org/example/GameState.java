@@ -77,6 +77,7 @@ public class GameState {
 
     /**
      * Verifica se a cobra comeu um fruto. Se sim, aumenta a pontuação e o tamanho da cobra
+     *
      * @return Verdadeiro se a cobra comeu um fruto, caso contrário, falso.
      */
     public boolean snakeAteFruit() {
@@ -87,6 +88,7 @@ public class GameState {
         }
         return false;
     }
+
     private void generateWalls() {
         // Example: Add walls at specific positions
         walls.add(new Posicao(10, 10));
@@ -97,6 +99,7 @@ public class GameState {
 
     /**
      * Verifica se a cobra pisou numa dinamite. Se sim, diminui a pontuação
+     *
      * @return Verdadeiro se a cobra pisou numa dinamite, caso contrário, falso.
      */
     public boolean snakeSteppedDynamite() {
@@ -145,6 +148,7 @@ public class GameState {
 
     /**
      * Gera um número inteiro aleatório entre min (inclusivo) e max (exclusivo).
+     *
      * @return Um número inteiro aleatório no intervalo [min, max).
      */
     private int randomNumber(int min, int max) {
@@ -153,6 +157,7 @@ public class GameState {
 
     /**
      * Gera uma posição aleatória dentro da área do jogo.
+     *
      * @return Uma nova posição aleatória.
      */
     private Posicao generateRandomPosition(int max_x, int max_y) {
@@ -164,8 +169,10 @@ public class GameState {
     public LinkedList<Posicao> getWalls() {
         return walls;
     }
+
     /**
      * Verifica se a posição dada está vazia (não ocupada pela cobra, frutos ou dinamites).
+     *
      * @return Verdadeiro se a posição estiver vazia, caso contrário, falso.
      */
     private boolean isEmptyPosition(Posicao p) {
@@ -174,6 +181,7 @@ public class GameState {
 
     /**
      * Gera uma posição aleatória para um novo objeto, garantindo que não está já ocupada.
+     *
      * @return Uma posição válida para um novo objeto.
      */
     public Posicao generateRandomObject(int x_max, int y_max) {
@@ -183,4 +191,5 @@ public class GameState {
         } while (!isEmptyPosition(p));
         return p;
     }
+
 }
