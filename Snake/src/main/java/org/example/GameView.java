@@ -27,8 +27,8 @@ public class GameView {
     private int fruitsCollected = 0;
     private final static int MAX_FRUITS_BEFORE_DIFFICULTY_INCREASE = 7;
     private final static int MAX_GAME_SPEED = 30; // Example maximum speed
-    private static Terminal terminal;
-    private static Screen screen;
+    static Terminal terminal;
+    static Screen screen;
     private GameState state;
     private final int gameplay_height;
     private final int gameplay_width;
