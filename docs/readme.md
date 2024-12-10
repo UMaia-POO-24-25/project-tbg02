@@ -104,6 +104,25 @@ O jogo termina quando:
 - **Ecrã de Jogo**: Inclui as pontuações (atual e máxima) exibidas no canto superior.  
 
 ---
+## Padrões usados
+
+### Padrão Singleton:
+
+A classe Som utiliza uma instância estática de Clip, que é uma forma de implementar o padrão Singleton. Isto garante que exista apenas uma instância de Clip a ser usada para a reprodução de som, sendo partilhada por toda a aplicação.
+
+### Padrão Factory:
+
+A classe DefaultTerminalFactory na GameView é um exemplo do padrão Factory. Este padrão abstrai a criação de objetos terminais, permitindo diferentes configurações sem expor a lógica de instanciamento ao cliente.
+
+### Padrão Observer:
+
+A classe GameView observa os eventos de teclas pressionadas e atualiza o estado do jogo em conformidade. Isto é uma forma de implementar o padrão Observer, onde a vista do jogo observa eventos de entrada e reage a eles.
+
+### Padrão Command:
+
+O tratamento de teclas pressionadas na classe GameView pode ser interpretado como uma implementação do padrão Command. Cada tecla pressionada corresponde a um comando (ex.: mover para cima, mover para baixo), que é executado para alterar o estado do jogo.
+
+---
 
 ## 📈 Fluxo de Jogo
 
