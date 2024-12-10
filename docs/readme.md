@@ -67,10 +67,11 @@ O jogo termina quando:
 ---
 
 ## UML
-**Construtores**
+
+### Construtores
 ![alt text](https://github.com/UMaia-POO-24-25/project-tbg02/blob/main/docs/img/construtores.jpg)
 
-**Métodos**
+### Métodos
 ![alt text](https://github.com/UMaia-POO-24-25/project-tbg02/blob/main/docs/img/methods.jpg)
 
 ---
