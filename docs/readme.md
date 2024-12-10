@@ -66,6 +66,12 @@ O jogo termina quando:
 
 ---
 
+## UML
+
+
+
+---
+
 ## 🎮 Controlo
 
 - **Setas direcionais**: O jogador controla a direção da cobra usando as teclas direcionais. A cobra continua a mover-se na direção indicada até que o jogador mude de direção.  
