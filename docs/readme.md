@@ -68,6 +68,7 @@ O jogo termina quando:
 
 ## UML
 
+![alt text](https://github.com/UMaia-POO-24-25/project-tbg02/blob/main/docs/img/construtores.jpg)
 
 
 ---
