@@ -34,7 +34,7 @@ Este projeto está implementado em **Java**, proporcionando uma experiência int
 - **Movimentação da cobra**  
   A cobra move-se continuamente na direção atual. Você pode alterar sua direção usando as teclas de seta (cima, baixo, esquerda, direita).  
 
-- **Comer comida**  
+- **Comer fruta**  
   Quando a cobra colide com o ícone da comida, ela cresce de tamanho e a pontuação do jogador aumenta. A comida aparece em uma nova posição aleatória.  
 
 - **Game Over ao colidir**  
