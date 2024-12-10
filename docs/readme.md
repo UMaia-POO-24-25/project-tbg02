@@ -104,7 +104,7 @@ O jogo termina quando:
 - **Ecrã de Jogo**: Inclui as pontuações (atual e máxima) exibidas no canto superior.  
 
 ---
-## Padrões usados
+## 📌 Padrões usados
 
 ### Padrão Singleton:
 
