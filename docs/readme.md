@@ -29,13 +29,15 @@ Este projeto está implementado em **Java**, proporcionando uma experiência int
 
 ## 🕹️ Planned Features
 
-- **Ranking/highscore**: Implementação de highscore e gravar o mesmo.
+- **Ranking/highscore**: Implementação de highscore e gravar o mesmo, com introdução do nome.
 - **Colisão com o corpo da cobra**: O jogo termina se a cobra colidir consigo mesma. 
-- **Menu Iniciar**: Inclui opções de início, pontuações máximas e informações **About**.
+- **Menu Iniciar**: Inclui opções de início, pontuações máximas e Ranking.
+-
+![alt text](https://github.com/user-attachments/assets/fb569632-e1a4-4306-9213-132640c3bc33)
 
 --- 
 
-### 🎯 Objetivo do Jogo
+### 🎯 Game Objectives
 
 O objetivo principal do **Modo Clássico** é controlar a cobra, fazendo-a crescer ao comer alimentos (geralmente representados por maçãs ou itens similares) enquanto evita colidir com as paredes e com o próprio corpo da cobra.  
 
@@ -43,26 +45,25 @@ O jogo termina quando:
 - A cobra colide com um obstáculo (como uma parede).  
 - A cobra colide consigo mesma (quando a cauda toca a cabeça).
 
-- Implementaçoes futuras no jogo, quando termina aparece a pontuaçao maxiam de cada jogador 
-
-![Implementaçoes](https://github.com/user-attachments/assets/fb569632-e1a4-4306-9213-132640c3bc33)
+- Implementaçoes futuras no jogo, quando termina aparece a pontuaçao máxima de cada jogador 
 
 ---
 
 ## UML
 
-### Métodos
+### Methods
+
 ![alt text](https://github.com/UMaia-POO-24-25/project-tbg02/blob/main/docs/img/methods.jpg)
 
 ---
 
-## 🎮 Controlo
+## 🎮 Controls
 
 - **Setas direcionais**: O jogador controla a direção da cobra usando as teclas direcionais. A cobra continua a mover-se na direção indicada até que o jogador mude de direção.  
 
 ---
 
-## 📋 Mecânica do Jogo
+## 📋 game Mechanics
 
 - **Crescimento da Cobra**: Cada vez que a cobra come um alimento, ela cresce em tamanho, dificultando o movimento no campo.  
 - **Velocidade Progressiva**: A velocidade da cobra aumenta conforme o jogo avança, tornando o controlo mais desafiador.  
@@ -71,7 +72,7 @@ O jogo termina quando:
 
 ---
 
-## 🏆 Pontuação
+## 🏆 Score
 
 - O jogador ganha pontos ao consumir alimentos.  
 - A pontuação aumenta com o progresso, registando o máximo alcançado.  
@@ -108,7 +109,7 @@ O tratamento de teclas pressionadas na classe GameView pode ser interpretado com
 
 ---
 
-## 📈 Fluxo de Jogo
+## 📈 Game Flow
 
 1. **Início**: A cobra começa pequena no centro da tela.  
 2. **Crescimento**: A cobra cresce ao comer itens que aparecem aleatoriamente.  
@@ -117,7 +118,7 @@ O tratamento de teclas pressionadas na classe GameView pode ser interpretado com
 
 ---
 
-## 🎨 Exemplo de Gameplay
+## 🎨 Gameplay
 
 - **Ecrã Inicial**: Opções de iniciar o jogo e exibição de pontuações máximas.  
 - **Durante o Jogo**: A cobra move-se continuamente e coleta itens para aumentar a pontuação.  
@@ -131,7 +132,7 @@ O tratamento de teclas pressionadas na classe GameView pode ser interpretado com
 
 ---
 
-## 📚 Conclusão
+## 📚 Conclusion
 
 O **Modo Clássico** do jogo Snake oferece uma experiência nostálgica, combinando simplicidade e desafio. É perfeito para quem procura uma jogabilidade direta e viciante, com o objetivo de alcançar a maior pontuação possível.  
 
