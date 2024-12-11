@@ -30,7 +30,7 @@ Este projeto está implementado em **Java**, proporcionando uma experiência int
 ## 🕹️ Planned Features
 
 - **Ranking/highscore**: Implementação de highscore e gravar o mesmo, com introdução do nome.
- ![alt text](https://github.com/user-attachments/assets/fb569632-e1a4-4306-9213-132640c3bc33)
+ ![alt text](https://github.com/UMaia-POO-24-25/project-tbg02/blob/main/docs/img/ranking.png)
 
 - **Colisão com o corpo da cobra**: O jogo termina se a cobra colidir consigo mesma.
   
@@ -66,7 +66,7 @@ O jogo termina quando:
 
 ---
 
-## 📋 game Mechanics
+## 📋 Game Mechanics
 
 - **Crescimento da Cobra**: Cada vez que a cobra come um alimento, ela cresce em tamanho, dificultando o movimento no campo.  
 - **Velocidade Progressiva**: A velocidade da cobra aumenta conforme o jogo avança, tornando o controlo mais desafiador.  
