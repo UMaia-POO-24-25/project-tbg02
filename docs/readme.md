@@ -18,39 +18,22 @@ Este projeto está implementado em **Java**, proporcionando uma experiência int
 - **Controlo de direção**: O jogador pode controlar a direção da cobra utilizando as teclas de seta (cima, baixo, esquerda, direita).  
 - **Aumento de tamanho da cobra**: A cobra cresce cada vez que come uma fruta.  
 - **Colisão com a parede**: O jogo termina se a cobra colidir com as paredes da tela.  
-- **Colisão com o corpo da cobra**: O jogo termina se a cobra colidir consigo mesma.  
-- **Pontuação**: O jogo mantém uma pontuação que aumenta à medida que a cobra come as frutas.  
+- **Pontuação**: O jogo mantém uma pontuação que aumenta à medida que a cobra come as frutas. 
 - **Tela de início e fim**: Tela inicial com as opções de iniciar o jogo e uma tela de fim com a pontuação final exibida.  
 - **Dificuldade crescente**: A velocidade da cobra aumenta à medida que a pontuação do jogador sobe.  
-- **Modo de reinício**: O jogador pode reiniciar o jogo após ter acabado.  
+- **Modo de reinício**: O jogador pode reiniciar o jogo após ter acabado.
 - **Efeitos sonoros**: Sons para ações importantes, como comer uma fruta ou colidir com um obstáculo.  
-- **Menu Iniciar**: Inclui opções de início, pontuações máximas e informações **About**.  
 - **Tipos de Items**: Inclui vários tipos de itens a serem recolhidos.  
 
 ---
 
-## 🕹️ Examples
+## 🕹️ Planned Features
 
-- **Movimentação da cobra**  
-  A cobra move-se continuamente na direção atual. Você pode alterar sua direção usando as teclas de seta (cima, baixo, esquerda, direita).  
+- **Ranking/highscore**: Implementação de highscore e gravar o mesmo.
+- **Colisão com o corpo da cobra**: O jogo termina se a cobra colidir consigo mesma. 
+- **Menu Iniciar**: Inclui opções de início, pontuações máximas e informações **About**.
 
-- **Comer fruta**  
-  Quando a cobra colide com o ícone da comida, ela cresce de tamanho e a pontuação do jogador aumenta. A comida aparece em uma nova posição aleatória.  
-
-- **Game Over ao colidir**  
-  O jogo termina se a cobra colidir com as paredes do campo ou com o próprio corpo.  
-
-- **Pontuação crescente**  
-  A pontuação aumenta cada vez que a cobra come comida. Quanto mais tempo o jogador sobreviver, maior será a pontuação.  
-
-- **Velocidade crescente**  
-  À medida que o jogador avança e a cobra cresce, a velocidade do jogo aumenta, tornando-o mais desafiador.  
-
----
-
-## 🌟 PLANNED FEATURES
-
-O **Modo Clássico** é a essência do jogo Snake e oferece uma experiência simples e viciante.  
+--- 
 
 ### 🎯 Objetivo do Jogo
 
@@ -68,17 +51,8 @@ O jogo termina quando:
 
 ## UML
 
-### Construtores
-![alt text](https://github.com/UMaia-POO-24-25/project-tbg02/blob/main/docs/img/construtores.jpg)
-
 ### Métodos
 ![alt text](https://github.com/UMaia-POO-24-25/project-tbg02/blob/main/docs/img/methods.jpg)
-
----
-
-## Coverage Test
-
-![alt text](https://github.com/UMaia-POO-24-25/project-tbg02/blob/main/docs/img/Coverage1.png)
 
 ---
 
@@ -110,7 +84,7 @@ O jogo termina quando:
 - **Ecrã de Jogo**: Inclui as pontuações (atual e máxima) exibidas no canto superior.  
 
 ---
-## 📌 Padrões usados
+## 📌 Design Patterns
 
 ### Padrão Singleton:
 
@@ -147,6 +121,20 @@ O tratamento de teclas pressionadas na classe GameView pode ser interpretado com
 
 ---
 
+## Coverage Test
+
+![alt text](https://github.com/UMaia-POO-24-25/project-tbg02/blob/main/docs/img/Coverage1.png)
+
+---
+
 ## 📚 Conclusão
 
 O **Modo Clássico** do jogo Snake oferece uma experiência nostálgica, combinando simplicidade e desafio. É perfeito para quem procura uma jogabilidade direta e viciante, com o objetivo de alcançar a maior pontuação possível.  
+
+---
+
+## Self-Evaluation
+
+- Diogo Teixeira: 33,3%
+- João Rebelo: 33,3%
+- José Cardoso: 33,3%
