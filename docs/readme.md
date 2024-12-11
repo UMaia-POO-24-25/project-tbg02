@@ -76,6 +76,12 @@ O jogo termina quando:
 
 ---
 
+## Coverage Test
+
+![alt text](https://github.com/UMaia-POO-24-25/project-tbg02/blob/main/docs/img/Coverage1.png)
+
+---
+
 ## 🎮 Controlo
 
 - **Setas direcionais**: O jogador controla a direção da cobra usando as teclas direcionais. A cobra continua a mover-se na direção indicada até que o jogador mude de direção.  
