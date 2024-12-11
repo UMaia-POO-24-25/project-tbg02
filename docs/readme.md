@@ -30,10 +30,13 @@ Este projeto está implementado em **Java**, proporcionando uma experiência int
 ## 🕹️ Planned Features
 
 - **Ranking/highscore**: Implementação de highscore e gravar o mesmo, com introdução do nome.
-- **Colisão com o corpo da cobra**: O jogo termina se a cobra colidir consigo mesma. 
+ ![alt text](https://github.com/user-attachments/assets/fb569632-e1a4-4306-9213-132640c3bc33)
+
+- **Colisão com o corpo da cobra**: O jogo termina se a cobra colidir consigo mesma.
+  
 - **Menu Iniciar**: Inclui opções de início, pontuações máximas e Ranking.
--
-![alt text](https://github.com/user-attachments/assets/fb569632-e1a4-4306-9213-132640c3bc33)
+  
+
 
 --- 
 
