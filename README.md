@@ -11,5 +11,7 @@
 
 ----------------------------------------------------------------------------------------
 ## Descrição
-Este projeto é uma implementação do clássico jogo Snake utilizando a linguagem de programação Java. 
-O objetivo do jogo é controlar a Snake que vai crescendo ao apanhar os itens, evitando colisões com as paredes e com o próprio corpo.
+
+O jogo Snake é um clássico dos videojogos, onde o jogador controla uma cobra que se move continuamente pela tela. O objetivo é comer a comida que aparece aleatoriamente, o que faz com que a cobra cresça a cada pedaço consumido. O desafio consiste em evitar colisões com as paredes e com o corpo da própria cobra, enquanto tenta alcançar a maior pontuação possível. O jogo torna-se mais difícil à medida que a cobra cresce em tamanho e a sua velocidade aumenta.
+O objetivo principal é controlar a cobra, fazendo-a crescer ao comer alimentos (geralmente representados por maçãs) enquanto evita colidir com as paredes e com o próprio corpo da cobra.
+O jogador controla a direção da cobra usando as teclas direcionais. A cobra continua a mover-se na direção indicada até que o jogador mude de direção.
