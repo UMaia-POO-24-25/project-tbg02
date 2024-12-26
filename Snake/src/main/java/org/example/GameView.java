@@ -10,6 +10,8 @@ import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.SwingTerminalFontConfiguration;
 import java.awt.*;
 import java.io.InputStream;
+import com.googlecode.lanterna.input.KeyStroke;
+import com.googlecode.lanterna.input.KeyType;
 
 
 public class GameView {
@@ -123,18 +125,44 @@ public class GameView {
         while (true) {
             k = readKeyStrokeInput();
             if (k != null) {
-                switch (k.getCharacter()) {
-                    case 's':
-                        return 1;
-                    case 'q':
-                        return 0;
-                    case 'H':
-                        return 2;
+                Character character = k.getCharacter();
+
+                if (character != null) {
+                    switch (character) {
+                        case 's':
+                            return 1;
+                        case 'q':
+                            return 0;
+                        case 'H':
+                            return 2;
+                        default:
+                            // Opcional: Lida com outras entradas de caracteres ou ignora
+                            break;
+                    }
+                } else {
+                    // Lida com as entradas de não caracteres, se necessário
+                    KeyType keyType = k.getKeyType();
+                    switch (keyType) {
+                        case ArrowUp:
+                            // Implement action for Arrow Up if needed
+                            break;
+                        case ArrowDown:
+                            // Implement action for Arrow Down if needed
+                            break;
+                        case Enter:
+                            // Implement action for Enter key if needed
+                            break;
+                        // Add more cases as required
+                        default:
+                            // Optional: Handle other key types or ignore
+                            break;
+                    }
                 }
             }
             sleep(100);
         }
     }
+
     private void drawWalls() {
         TextGraphics tg = screen.newTextGraphics();
         for (Posicao p : state.getWalls()) {
