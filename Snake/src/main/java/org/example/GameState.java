@@ -2,23 +2,31 @@ package org.example;
 
 import java.util.LinkedList;
 import java.util.Random;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
 
 /**
  * Representa o estado do jogo da cobra, incluindo a cobra, os frutos, os obstáculos e a pontuação.
  */
 public class GameState {
 
-    // Penalização em pontuação quando a cobra pisa numa dinamite.
     private final static int SCORE_PENALTY = 25;
-
     private Snake snake;
-    // Lista de frutos e dinamites no tabuleiro.
     private LinkedList<Posicao> fruits;
     private LinkedList<Posicao> dynamites;
     private LinkedList<Posicao> walls;
 
     // Current score
     private int score;
+
+       // Highscore fields
+       private String highScoreName = "None";
+       private int highScore = 0;
+       private final String HIGH_SCORE_FILE = "src\\main\\resources\\Ranking\\Ranking.txt";
 
     // Gerador de números aleatórios.
     private final Random rand;
@@ -33,10 +41,69 @@ public class GameState {
         dynamites = new LinkedList<>();
         walls = new LinkedList<>();
         score = 0;
-        //hightscore();
+
+        loadHighScore();
+
         // Add walls to the game
         generateWalls();
     }
+
+    // Load highscore from file
+    private void loadHighScore() {
+        try (BufferedReader reader = new BufferedReader(new FileReader(HIGH_SCORE_FILE))) {
+            String name = reader.readLine();
+            String scoreStr = reader.readLine();
+            if (name != null && scoreStr != null) {
+                highScoreName = name;
+                highScore = Integer.parseInt(scoreStr);
+            }
+        } catch (IOException e) {
+            // File not found, no highscore yet
+        }
+    }
+// Save highscore to file
+private void saveHighScore() {
+    try (BufferedWriter writer = new BufferedWriter(new FileWriter(HIGH_SCORE_FILE))) {
+        writer.write(highScoreName);
+        writer.newLine();
+        writer.write(String.valueOf(highScore));
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+
+  // Check and update highscore
+  public boolean checkHighScore() {
+    if (score > highScore) {
+        highScore = score;
+      //  highScoreName = getPlayerName();
+        //saveHighScore();
+        return true;
+    }
+    return false;
+}
+ // Get player's name
+ /*private String getPlayerName() {
+    System.out.print("New Highscore! Enter your name: ");
+    Scanner scanner = new Scanner(System.in);
+    return scanner.nextLine();
+}*/
+
+public void setHighScoreName(String name) {
+    this.highScoreName = name;
+    saveHighScore();
+}
+
+
+// Getters for highscore
+public int getHighScore() {
+    return highScore;
+}
+
+public String getHighScoreName() {
+    return highScoreName;
+}
+
 
     // Getters
     public LinkedList<Posicao> getFruits() {
@@ -55,8 +122,12 @@ public class GameState {
         return snake.isAlive();
     }
 
-    public void killSnake() {
+    public boolean killSnake() {
         snake.kill();
+        boolean isNewHighScore = checkHighScore();
+        System.out.println("Current Score: " + getScore());
+        System.out.println("Highscore: " + getHighScoreName() + " - " + getHighScore());
+        return isNewHighScore;
     }
 
     public void moveSnake() {

@@ -9,9 +9,10 @@ import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.SwingTerminalFontConfiguration;
 import java.awt.*;
+import java.io.IOException;
 import java.io.InputStream;
-import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
+import java.io.IOException;
 
 
 public class GameView {
@@ -67,6 +68,28 @@ public class GameView {
             throw new RuntimeException("Erro ao inicializar o ecrã do jogo.", e);
         }
     }
+
+    /**
+ * Displays a centered message on the game screen.
+
+ */
+private void displayMessage(String message) {
+    TextGraphics tg = screen.newTextGraphics();
+    tg.setForegroundColor(TextColor.ANSI.WHITE);
+    
+    // Calculate centered position
+    int x = (gameplay_width - message.length()) / 2;
+    int y = gameplay_height / 2;
+    
+    tg.putString(x, y, message);
+
+    try{
+    screen.refresh();
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+
+}
     private void clearScreen() {
         try {
             screen.clear();
@@ -189,18 +212,39 @@ public class GameView {
         }
     }
     private void increaseDifficulty() {
-        // Example: Draw a few walls inside the game area
-        // You can add more walls or change their positions as needed
-        drawString(10 + (fruitsCollected / MAX_FRUITS_BEFORE_DIFFICULTY_INCREASE) * 2, 10, BORDER_STRING, TextColor.ANSI.GREEN);
-        drawString(11 + (fruitsCollected / MAX_FRUITS_BEFORE_DIFFICULTY_INCREASE) * 2, 10, BORDER_STRING, TextColor.ANSI.GREEN);
-        drawString(12 + (fruitsCollected / MAX_FRUITS_BEFORE_DIFFICULTY_INCREASE) * 2, 10, BORDER_STRING, TextColor.ANSI.GREEN);
-        drawString(20 + (fruitsCollected / MAX_FRUITS_BEFORE_DIFFICULTY_INCREASE) * 2, 15, BORDER_STRING, TextColor.ANSI.GREEN);
-        drawString(21 + (fruitsCollected / MAX_FRUITS_BEFORE_DIFFICULTY_INCREASE) * 2, 15, BORDER_STRING, TextColor.ANSI.GREEN);
-        drawString(22 + (fruitsCollected / MAX_FRUITS_BEFORE_DIFFICULTY_INCREASE) * 2, 15, BORDER_STRING, TextColor.ANSI.GREEN);
-        drawString(30 + (fruitsCollected / MAX_FRUITS_BEFORE_DIFFICULTY_INCREASE) * 2, 20, BORDER_STRING, TextColor.ANSI.GREEN);
-        drawString(31 + (fruitsCollected / MAX_FRUITS_BEFORE_DIFFICULTY_INCREASE) * 2, 20, BORDER_STRING, TextColor.ANSI.GREEN);
-        drawString(32 + (fruitsCollected / MAX_FRUITS_BEFORE_DIFFICULTY_INCREASE) * 2, 20, BORDER_STRING, TextColor.ANSI.GREEN);
+        // Calculate the increment based on fruits collected
+        int increment = (fruitsCollected / MAX_FRUITS_BEFORE_DIFFICULTY_INCREASE) * 2;
+
+        // Define new wall positions
+        int[][] newWallPositions = {
+                {10 + increment, 10},
+                {11 + increment, 10},
+                {12 + increment, 10},
+                {20 + increment, 15},
+                {21 + increment, 15},
+                {22 + increment, 15},
+                {30 + increment, 20},
+                {31 + increment, 20},
+                {32 + increment, 20}
+        };
+
+        // Iterate through each new wall position
+        for (int[] pos : newWallPositions) {
+            int x = pos[0];
+            int y = pos[1];
+
+            // Draw the wall on the screen
+            drawString(x, y, BORDER_STRING, TextColor.ANSI.GREEN);
+
+            // Add the wall position to the game state for collision detection
+            Posicao wallPosicao = new Posicao(x, y);
+            if (!state.getWalls().contains(wallPosicao)) { // Prevent adding duplicates
+                state.getWalls().add(wallPosicao);
+            }
+        }
     }
+
+
     private void updateGame() {
         Posicao tail = state.getSnakeTail();
         clearStringAt(tail.getX(), tail.getY());
@@ -209,42 +253,135 @@ public class GameView {
         Posicao head = state.getSnakeHead();
         if (checkCollision()) {
             highlightCrashPosition(head.getX(), head.getY());
-            state.killSnake();
+            boolean isNewHighScore = state.killSnake(); // Check if new highscore
             Som.playSound("/sounds/gameover.wav");
+            if (isNewHighScore) {
+                String playerName = promptForHighScoreName();
+                if (playerName.isEmpty()) {
+                    playerName = "Anonymous";
+                }
+                state.setHighScoreName(playerName);
+                displayMessage("Highscore saved! Press any key to continue.");
+            } else {
+                displayMessage("Game Over! Press any key to continue.");
+            }
+            try {
+                screen.readInput(); // Wait for key press
+            } catch (IOException e) {
+                e.printStackTrace();
+            } 
+
             openMainMenu();
         } else if (state.snakeAteFruit()) {
             drawScore();
             generateNewFruit();
             fruitsCollected++;
             if (fruitsCollected <= MAX_FRUITS_BEFORE_DIFFICULTY_INCREASE) {
-                game_speed = Math.max(game_speed - SPEED_INCREMENT, MAX_GAME_SPEED); // Aumenta a velocidade
+                game_speed = Math.max(game_speed - SPEED_INCREMENT, MAX_GAME_SPEED); // Increase speed
             }
             if (fruitsCollected % MAX_FRUITS_BEFORE_DIFFICULTY_INCREASE == 0) {
                 increaseDifficulty();
             }
         } else if (state.snakeSteppedDynamite()) {
             highlightCrashPosition(head.getX(), head.getY());
-            state.killSnake();
+            boolean isNewHighScore = state.killSnake(); // Check if new highscore
             Som.playSound("/sounds/explosion.wav");
+            if (isNewHighScore) {
+                String playerName = promptForHighScoreName();
+                if (playerName.isEmpty()) {
+                    playerName = "Anonymous";
+                }
+                state.setHighScoreName(playerName);
+                displayMessage("Highscore saved! Press any key to continue.");
+            } else {
+                displayMessage("Game Over! Press any key to continue.");
+            }
+            try {
+                screen.readInput(); // Wait for key press
+            } catch (IOException e) {
+                e.printStackTrace();
+            } 
+            
             openMainMenu();
         }
         refreshScreen();
     }
+
+    /**
+ * Prompts the player to enter their name for the highscore.
+ *
+ * @return The entered name.
+ */
+private String promptForHighScoreName() {
+    TextGraphics tg = screen.newTextGraphics();
+    tg.setForegroundColor(TextColor.ANSI.YELLOW);
+    String prompt = "New Highscore! Enter your name: ";
+    int promptX = (gameplay_width - prompt.length()) / 2;
+    int promptY = gameplay_height / 2;
+    tg.putString(promptX, promptY, prompt);
+    
+    try{
+        screen.refresh();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    StringBuilder nameBuilder = new StringBuilder();
+    while (true) {
+        try {
+            KeyStroke keyStroke = terminal.readInput();
+            if (keyStroke == null) continue;
+            if (keyStroke.getKeyType() == KeyType.Enter) {
+                break;
+            } else if (keyStroke.getKeyType() == KeyType.Backspace) {
+                if (nameBuilder.length() > 0) {
+                    nameBuilder.deleteCharAt(nameBuilder.length() - 1);
+                    // Clear the last character on screen
+                    int charX = promptX + prompt.length() + nameBuilder.length();
+                    tg.putString(charX, promptY, " ");
+                }
+            } else {
+                char c = keyStroke.getCharacter() != null ? keyStroke.getCharacter() : ' ';
+                if (Character.isLetterOrDigit(c)) {
+                    nameBuilder.append(c);
+                    tg.setForegroundColor(TextColor.ANSI.GREEN);
+                    tg.putString(promptX + prompt.length() + nameBuilder.length() - 1, promptY, String.valueOf(c));
+                }
+            }
+            screen.refresh();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    return nameBuilder.toString();
+}
+
+
     private boolean checkCollision() {
         Posicao head = state.getSnakeHead();
+
+        // Check collision with outer walls
         if (head.getX() <= 0 || head.getX() >= gameplay_width ||
                 head.getY() <= 0 || head.getY() >= gameplay_height) {
             return true;
         }
+
+        // Check collision with snake's body
         if (state.getSnakeBody().stream().filter(p -> !p.equals(head)).anyMatch(head::equals)) {
             return true;
         }
+
+        // Check collision with internal walls
         if (state.getWalls().stream().anyMatch(head::equals)) {
             return true;
         }
-        return false;
 
+        return false;
     }
+
+
+
+
     private void readKeyStrokeboard() {
         try {
             KeyStroke keyStroke = terminal.pollInput();
@@ -270,12 +407,23 @@ public class GameView {
             e.printStackTrace();
         }
     }
+
+
     private void drawScore() {
         TextGraphics tg = screen.newTextGraphics();
         tg.setForegroundColor(TextColor.ANSI.CYAN);
         String scoreText = "SCORE: " + state.getScore();
         tg.putString(4, gameplay_height + 1, scoreText);
+    
+        // Display Highscore
+        String highScoreText = "HIGH: " + state.getHighScoreName() + " - " + state.getHighScore();
+        tg.setForegroundColor(TextColor.ANSI.MAGENTA);
+        int highScoreX = gameplay_width - highScoreText.length() - 4;
+        int highScoreY = gameplay_height + 1;
+        tg.putString(highScoreX, highScoreY, highScoreText);
     }
+
+
     private void drawWall() {
 
         TextGraphics tg = screen.newTextGraphics();
