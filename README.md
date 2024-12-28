@@ -16,4 +16,4 @@ O jogo Snake é um clássico dos videojogos, onde o jogador controla uma cobra q
 
 O objetivo principal é controlar a cobra, fazendo-a crescer ao comer alimentos (geralmente representados por maçãs) enquanto evita colidir com as paredes e com o próprio corpo da cobra.
 
-Setas direcionais: O jogador controla a direção da cobra usando as teclas direcionais. A cobra continua a mover-se na direção indicada até que o jogador mude de direção.
+Setas direcionais: O jogador assume o controle da cobra utilizando as teclas direcionais do teclado (cima, baixo, esquerda e direita). A cobra desloca-se continuamente na direção selecionada até que uma nova direção seja indicada. O objetivo é apanhar frutas espalhadas pelo cenário, isto irá fazer com que a cobra cresça a cada fruta consumida. No entanto, o jogador deve evitar colidir com as paredes, com o próprio corpo da cobra e com bombas que aparecem como obstáculos no campo de jogo. A precisão nos movimentos é essencial para avançar e alcançar pontuações mais altas.
