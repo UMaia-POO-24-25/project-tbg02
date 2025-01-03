@@ -89,12 +89,6 @@ private void saveHighScore() {
     }
     return false;
 }
- // Get player's name
- /*private String getPlayerName() {
-    System.out.print("New Highscore! Enter your name: ");
-    Scanner scanner = new Scanner(System.in);
-    return scanner.nextLine();
-}*/
 
 public void setHighScoreName(String name) {
     this.highScoreName = name;
