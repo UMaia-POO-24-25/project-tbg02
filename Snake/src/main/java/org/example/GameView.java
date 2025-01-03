@@ -12,9 +12,9 @@ import java.awt.*;
 import java.io.IOException;
 import java.io.InputStream;
 import com.googlecode.lanterna.input.KeyType;
-import java.io.IOException;
+//import java.io.IOException;
 import java.io.BufferedReader;
-import java.io.FileReader;
+//import java.io.FileReader;
 import java.io.InputStreamReader;
 
 
@@ -72,6 +72,9 @@ public class GameView {
         }
     }
 
+    public void setState(GameState gameState) {
+        this.state = gameState;
+    }
     /**
  * Displays a centered message on the game screen.
 
