@@ -16,14 +16,19 @@ public class Som {
                 throw new RuntimeException("Ficheiro de som não encontrado : " + soundFile);
             }
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(audioSrc);
-            Clip clip = AudioSystem.getClip();
-            clip.open(audioInputStream);
-            clip.start();
+            Clip newClip = AudioSystem.getClip();
+            newClip.open(audioInputStream);
+            newClip.start();
+            if (clip != null && clip.isRunning()) {
+                clip.stop();
+            }
+            clip = newClip;
         } catch (Exception ex) {
             System.out.println("Erro ao abrir som.");
             ex.printStackTrace();
         }
     }
+
     public static void playSoundLoop(String soundFile) {
         try {
             InputStream audioSrc = Som.class.getResourceAsStream(soundFile);
@@ -31,9 +36,13 @@ public class Som {
                 throw new RuntimeException("Ficheiro de som não encontrado : " + soundFile);
             }
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new BufferedInputStream(audioSrc));
-            clip = AudioSystem.getClip();
-            clip.open(audioInputStream);
-            clip.loop(Clip.LOOP_CONTINUOUSLY);
+            Clip newClip = AudioSystem.getClip();
+            newClip.open(audioInputStream);
+            newClip.loop(Clip.LOOP_CONTINUOUSLY);
+            if (clip != null && clip.isRunning()) {
+                clip.stop();
+            }
+            clip = newClip;
         } catch (Exception ex) {
             System.out.println("Erro ao abrir som.");
             ex.printStackTrace();
@@ -45,5 +54,4 @@ public class Som {
             clip.stop();
         }
     }
-
 }
