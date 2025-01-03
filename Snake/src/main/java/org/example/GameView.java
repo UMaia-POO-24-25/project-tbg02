@@ -13,6 +13,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import com.googlecode.lanterna.input.KeyType;
 import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.InputStreamReader;
 
 
 public class GameView {
@@ -156,8 +159,9 @@ private void displayMessage(String message) {
                             return 1;
                         case 'q':
                             return 0;
-                        case 'H':
-                            return 2;
+                        case 'r':
+                            showRanking();
+                            break;
                         default:
                             // Opcional: Lida com outras entradas de caracteres ou ignora
                             break;
@@ -184,6 +188,50 @@ private void displayMessage(String message) {
             }
             sleep(100);
         }
+    }
+
+    private void showRanking() {
+        clearScreen(); // Clear the screen before displaying ranking
+        TextGraphics tg = screen.newTextGraphics();
+        tg.setForegroundColor(TextColor.ANSI.YELLOW);
+        
+        // Display the ranking header
+        tg.putString(10, 2, "########## RANKING ##########");
+        tg.putString(10, 3, "Name          Score");
+        tg.putString(10, 4, "--------------------------");
+
+        // Declare lineNumber outside the try block
+        int lineNumber = 5; // Start displaying from line 5
+
+        // Load and display the ranking from the file using ClassLoader
+        try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream("Ranking/Ranking.txt");
+             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
+            if (inputStream == null) {
+                tg.putString(10, lineNumber, "Erro: Ficheiro de ranking não encontrado.");
+                refreshScreen();
+                return; // Exit the method if the file is not found
+            }
+            
+            String line;
+            while ((line = reader.readLine()) != null) {
+                tg.putString(10, lineNumber++, line); // Display each line of the ranking
+            }
+        } catch (IOException e) {
+            tg.putString(10, lineNumber, "Erro ao carregar o ranking."); // Use lineNumber here
+            e.printStackTrace();
+        }
+
+        // Prompt to return to the main menu
+        tg.putString(10, lineNumber + 1, "Pressione qualquer tecla para voltar ao menu principal.");
+        refreshScreen(); // Refresh the screen to show the ranking
+
+        // Wait for a key press to return to the main menu
+        try {
+            screen.readInput();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        openMainMenu(); // Return to the main menu
     }
 
     private void drawWalls() {

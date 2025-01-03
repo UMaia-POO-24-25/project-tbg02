@@ -7,6 +7,7 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.File;
 
 
 /**
@@ -63,7 +64,13 @@ public class GameState {
     }
 // Save highscore to file
 private void saveHighScore() {
-    try (BufferedWriter writer = new BufferedWriter(new FileWriter(HIGH_SCORE_FILE))) {
+    // Define the path to the high score file
+    File highScoreFile = new File("src/main/resources/Ranking/Ranking.txt");
+    
+    // Ensure the directory exists
+    highScoreFile.getParentFile().mkdirs(); // Create the directory if it doesn't exist
+
+    try (BufferedWriter writer = new BufferedWriter(new FileWriter(highScoreFile))) {
         writer.write(highScoreName);
         writer.newLine();
         writer.write(String.valueOf(highScore));
