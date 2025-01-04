@@ -4,7 +4,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.LinkedList;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.*;
 
 public class GameStateTest {
@@ -52,7 +54,21 @@ public class GameStateTest {
         verify(snake, never()).increaseSize();
     }
 
-    
+    @Test
+    public void testGenerateRandomObject() {
+        Posicao mockPosicao = mock(Posicao.class);
+        GameState spyGameState = spy(gameState);
+
+        doReturn(mockPosicao).when(spyGameState).generateRandomPosition(anyInt(), anyInt());
+        doReturn(true).when(spyGameState).isEmptyPosition(mockPosicao);
+
+        Posicao result = spyGameState.generateRandomObject(80, 23);
+
+        assertEquals(mockPosicao, result);
+        verify(spyGameState, atLeastOnce()).generateRandomPosition(anyInt(), anyInt());
+        verify(spyGameState, atLeastOnce()).isEmptyPosition(mockPosicao);
+    }
+
     @Test
     public void testSetDirection() {
         when(snake.getDirection()).thenReturn(Direcao.RIGHT);
