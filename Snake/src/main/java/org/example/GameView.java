@@ -191,7 +191,7 @@ private void displayMessage(String message) {
         }
     }
 
-    private void showRanking() {
+    void showRanking() {
         clearScreen(); // Clear the screen before displaying ranking
         TextGraphics tg = screen.newTextGraphics();
         tg.setForegroundColor(TextColor.ANSI.YELLOW);
@@ -361,7 +361,7 @@ private void displayMessage(String message) {
  *
  * @return The entered name.
  */
-private String promptForHighScoreName() {
+    String promptForHighScoreName() {
     TextGraphics tg = screen.newTextGraphics();
     tg.setForegroundColor(TextColor.ANSI.YELLOW);
     String prompt = "New Highscore! Enter your name: ";
@@ -406,7 +406,7 @@ private String promptForHighScoreName() {
 }
 
 
-    private boolean checkCollision() {
+    boolean checkCollision() {
         Posicao head = state.getSnakeHead();
 
         // Check collision with outer walls
@@ -431,7 +431,7 @@ private String promptForHighScoreName() {
 
 
 
-    private void readKeyStrokeboard() {
+    void readKeyStrokeboard() {
         try {
             KeyStroke keyStroke = terminal.pollInput();
             if (keyStroke != null) {
@@ -512,12 +512,12 @@ private String promptForHighScoreName() {
         if (color != null) tg.setForegroundColor(color);
         tg.putString(x, y, string);
     }
-    private void generateNewFruit() {
+    void generateNewFruit() {
         Posicao newFruitPosicao = state.generateRandomObject(gameplay_width - 1, gameplay_height - 1);
         state.getFruits().add(newFruitPosicao);
         drawString(newFruitPosicao.getX(), newFruitPosicao.getY(), FRUIT_STRING, TextColor.ANSI.RED);
     }
-    private void generateNewDynamite() {
+    void generateNewDynamite() {
         Posicao newDynamitePosicao = state.generateRandomObject(gameplay_width - 1, gameplay_height - 1);
         state.getDynamites().add(newDynamitePosicao);
         drawString(newDynamitePosicao.getX(), newDynamitePosicao.getY(), DYNAMITE_STRING, TextColor.ANSI.WHITE_BRIGHT);
@@ -532,7 +532,7 @@ private String promptForHighScoreName() {
             e.printStackTrace();
         }
     }
-    private void exitGame() {
+    void exitGame() {
         try {
             Som.stopSound(); //stops loops sound
             screen.stopScreen();
@@ -548,12 +548,13 @@ private String promptForHighScoreName() {
             return null;
         }
     }
-    private void sleep(int ms) {
+    void sleep(int ms) {
         try {
             Thread.sleep(ms);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
     }
+
 
 }

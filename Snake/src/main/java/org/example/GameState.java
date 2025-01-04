@@ -257,11 +257,9 @@ public String getHighScoreName() {
      * @return Uma posição válida para um novo objeto.
      */
     public Posicao generateRandomObject(int x_max, int y_max) {
-        Posicao p;
-        do {
-            p = generateRandomPosition(x_max, y_max);
-        } while (!isEmptyPosition(p));
-        return p;
+        return null;
     }
 
+    public void startGame() {
+    }
 }
