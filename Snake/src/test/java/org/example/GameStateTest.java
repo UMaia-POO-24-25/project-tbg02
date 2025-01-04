@@ -17,7 +17,7 @@ public class GameStateTest {
         gameState = new GameState();
         snake = mock(Snake.class);
         fruits = mock(LinkedList.class);
-
+        
         // Usando reflexão para definir os mocks nos campos privados
         try {
             java.lang.reflect.Field snakeField = GameState.class.getDeclaredField("snake");
@@ -50,5 +50,25 @@ public class GameStateTest {
 
         assertFalse(result);
         verify(snake, never()).increaseSize();
+    }
+
+    
+    @Test
+    public void testSetDirection() {
+        when(snake.getDirection()).thenReturn(Direcao.RIGHT);
+
+        gameState.setDirection(Direcao.LEFT);
+        verify(snake, never()).setDirection(Direcao.LEFT);
+
+        gameState.setDirection(Direcao.UP);
+        verify(snake).setDirection(Direcao.UP);
+    }
+
+
+    @Test
+    public void testMoveSnake() {
+        gameState.moveSnake();
+
+        verify(snake).move();
     }
 }
