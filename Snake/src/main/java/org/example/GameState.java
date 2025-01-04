@@ -232,7 +232,7 @@ public String getHighScoreName() {
      *
      * @return Uma nova posição aleatória.
      */
-    private Posicao generateRandomPosition(int max_x, int max_y) {
+    public Posicao generateRandomPosition(int max_x, int max_y) {
         int x = randomNumber(1, max_x);
         int y = randomNumber(1, max_y);
         return new Posicao(x, y);
@@ -247,7 +247,7 @@ public String getHighScoreName() {
      *
      * @return Verdadeiro se a posição estiver vazia, caso contrário, falso.
      */
-    private boolean isEmptyPosition(Posicao p) {
+    public boolean isEmptyPosition(Posicao p) {
         return !(snake.isBody((Posicao) p) || fruits.contains(p) || dynamites.contains(p));
     }
 
