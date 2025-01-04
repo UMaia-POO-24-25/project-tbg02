@@ -1,8 +1,5 @@
 package org.example;
 
-import org.example.GameState;
-import org.example.Posicao;
-import org.example.Snake;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.LinkedList;

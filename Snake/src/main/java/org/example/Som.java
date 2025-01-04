@@ -7,7 +7,7 @@ import javax.sound.sampled.Clip;
 import java.io.InputStream;
 
 public class Som {
-    private static Clip clip;
+    public static Clip clip;
 
     public static void playSound(String soundFile) {
         try {
