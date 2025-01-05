@@ -45,31 +45,33 @@ public class GameState {
 
         loadHighScore();
 
-        // Add walls to the game
+        //adiciona paredes no jogo
         generateWalls();
     }
 
-    // Load highscore from file
+    // Responsavel por verificar a pontuaçao mais alta do arquivo
     private void loadHighScore() {
-        try (BufferedReader reader = new BufferedReader(new FileReader(HIGH_SCORE_FILE))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(HIGH_SCORE_FILE))) { // Le a informaçao do txt
             String name = reader.readLine();
             String scoreStr = reader.readLine();
+            //valida de o scoreStr contem apenas numeros antes de converter
             if (name != null && scoreStr != null) {
                 highScoreName = name;
                 highScore = Integer.parseInt(scoreStr);
             }
         } catch (IOException e) {
-            // File not found, no highscore yet
+            //adicona uma mensagem para ser mais facil ver o problema
         }
     }
-// Save highscore to file
+// Guarda a melhor pontuaçao
 private void saveHighScore() {
     // Define the path to the high score file
     File highScoreFile = new File("src/main/resources/Ranking/Ranking.txt");
     
-    // Ensure the directory exists
-    highScoreFile.getParentFile().mkdirs(); // Create the directory if it doesn't exist
+    //verifica se o diretorio existe
+    highScoreFile.getParentFile().mkdirs(); // cria um novo diretorio caso nao exista
 
+    //grava texto no arquivo
     try (BufferedWriter writer = new BufferedWriter(new FileWriter(highScoreFile))) {
         writer.write(highScoreName);
         writer.newLine();
@@ -79,7 +81,7 @@ private void saveHighScore() {
     }
 }
 
-  // Check and update highscore
+  // Verifica e ve se existe alteraçao na tabela de pontuaçao
   public boolean checkHighScore() {
     if (score > highScore) {
         highScore = score;
@@ -90,13 +92,14 @@ private void saveHighScore() {
     return false;
 }
 
+//responsavel por armazenar a melhor pontuaçao
 public void setHighScoreName(String name) {
     this.highScoreName = name;
     saveHighScore();
 }
 
 
-// Getters for highscore
+// Devolve a melhor pontuaçao
 public int getHighScore() {
     return highScore;
 }
@@ -106,7 +109,7 @@ public String getHighScoreName() {
 }
 
 
-    // Getters
+    // Responsaveis por colocar os frutos e os dinamites
     public LinkedList<Posicao> getFruits() {
         return fruits;
     }
@@ -115,14 +118,18 @@ public String getHighScoreName() {
         return dynamites;
     }
 
+    // Devolve a pontuaçao do jogador
     public int getScore() {
         return score;
     }
 
+
+    //Verifica de a Snake se encontra viva
     public boolean isSnakeAlive() {
         return snake.isAlive();
     }
 
+    //Mata a Snake, e verifica se a pontuação atual é um novo recorde e exibe informações.
     public boolean killSnake() {
         snake.kill();
         boolean isNewHighScore = checkHighScore();
@@ -131,18 +138,22 @@ public String getHighScoreName() {
         return isNewHighScore;
     }
 
+    // Responsavel por mover a cobra na sua direçao atual
     public void moveSnake() {
         snake.move();
     }
 
+    //Devolve a lista de posições que representam o corpo da Snake.
     public LinkedList<Posicao> getSnakeBody() {
         return snake.getBody();
     }
 
+    //devolve a posicao da cabeça da Snake
     public Posicao getSnakeHead() {
         return (Posicao) snake.getHead();
     }
 
+    //devolve a posicao da cauda da Snake
     public Posicao getSnakeTail() {
         return (Posicao) snake.getTail();
     }
@@ -161,12 +172,13 @@ public String getHighScoreName() {
         return false;
     }
 
+    //responsavel por criar paredes durante o jogo para aumentar a dificuldade
     private void generateWalls() {
-        // Example: Add walls at specific positions
+
         walls.add(new Posicao(10, 10));
         walls.add(new Posicao(11, 10));
         walls.add(new Posicao(12, 10));
-        // Add more walls as needed
+
     }
 
     /**
