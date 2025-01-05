@@ -6,20 +6,19 @@ import java.util.LinkedList;
  * Representa o objeto Snake.
  */
 public class Snake {
-    // Comprimento inicial da cobra.
+    // Comprimento inicial da Snake.
     private final static int SNAKE_INITIAL_SIZE = 4;
-    // Snake's body positions. The head is the last element in the list.
+    // Posições do corpo da Snake. A cabeça é o último elemento da lista.
     private LinkedList<Posicao> body;
-    // Posições do corpo da cobra. A cabeça é o último elemento da lista.
     private Direcao direcao;
-    // Indica se a cobra está viva.
+    // Indica se a Snake se encontra viva.
     private boolean alive;
     /**
      * Instancia um novo objeto Snake voltado para a direção dada.
      */
     public Snake(Direcao starting_direcao) {
         body = new LinkedList<>();
-        // Inicialize o corpo da cobra, começando numa posição predefinida.
+        // Inicia o corpo da Snake, que começa em uma posição predefinida.
         for (int i = 0; i < SNAKE_INITIAL_SIZE; i++) {
             body.add(new Posicao(i + 3, 15));
         }
@@ -29,32 +28,32 @@ public class Snake {
     // Getters e setters
     public LinkedList<Posicao> getBody() {
         return body;
-    }
+    } // devolve o metedo do corpo da Snake
     public Posicao getHead() {
         return body.getLast();
-    }
+    } //devolve o metedo da cabeça da Snake
     public Posicao getTail() {
         return body.getFirst();
-    }
+    }//devolve o metedo da cauda da Snake
     public void setDirection(Direcao direcao) {
         this.direcao = direcao;
-    }
+    } //define a direção da Snake.
     public Direcao getDirection() {
         return direcao;
-    }
+    } //retorna a direção atual da Snake.
     public boolean isAlive() {
         return alive;
-    }
+    } //verifica se a Snake está viva.
     public void kill() {
         alive = false;
-    }
+    } //marca a Snake como morta.
     /**
      * Move a cobra na direção atual.
      * Remove a cauda e adicione uma nova cabeça com base na direção.
      */
     public void move() {
         Posicao head = getHead();
-        body.removeFirst(); // Remove the tail
+        body.removeFirst();
         // Determine a nova posição da cabeça.
         Posicao newHead;
         switch (direcao) {
