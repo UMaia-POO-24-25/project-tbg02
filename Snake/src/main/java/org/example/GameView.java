@@ -72,9 +72,7 @@ public class GameView {
         }
     }
 
-    public void setState(GameState gameState) {
-        this.state = gameState;
-    }
+    
     /**
      * Coloca a mensagem no centro do ecra
 

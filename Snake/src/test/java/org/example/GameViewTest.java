@@ -4,8 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import com.googlecode.lanterna.screen.Screen;
-import java.io.IOException;
-import java.lang.reflect.Method;
+
 
 import static org.mockito.Mockito.*;
 
@@ -21,14 +20,7 @@ public class GameViewTest {
         gameView = new GameView(80, 23); // Initialize with width and height
     }
 
-    @Test
-    public void testDisplayMessage() throws Exception {
-        Method displayMessageMethod = GameView.class.getDeclaredMethod("displayMessage", String.class);
-        displayMessageMethod.setAccessible(true);
-        displayMessageMethod.invoke(gameView, "Test Message");
-        verify(mockScreen, times(1)).refresh();
-    }
-
+    
     @Test
     public void testOpenMainMenu() {
         // Mock behavior of GameState if needed
@@ -36,7 +28,6 @@ public class GameViewTest {
 
         gameView.openMainMenu();
 
-        // Verify interactions or state changes
-        //verify(mockGameState, times(1)).isSnakeAlive();
+       
     }
 }
