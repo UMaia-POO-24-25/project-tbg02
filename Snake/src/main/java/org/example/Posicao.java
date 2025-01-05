@@ -18,10 +18,10 @@ public class Posicao {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Posicao posicao = (Posicao) o;
-        return x == posicao.x && y == posicao.y;
+        if (this == o) return true; // Verifica se é o mesmo objeto
+        if (o == null || getClass() != o.getClass()) return false; // Verifica se é o tipo correto
+        Posicao posicao = (Posicao) o; // Converte o objeto para Posicao
+        return x == posicao.x && y == posicao.y; // Verifica se as coordenadas são iguais
     }
 
     @Override
