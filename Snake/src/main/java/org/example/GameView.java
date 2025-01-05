@@ -39,21 +39,23 @@ public class GameView {
     private int game_speed;
 
 
+    // Inicializar a configuraçao interface grafica ou visualizaçao do jogo
 
+    //Recebe as Dimensões do Jogo:
     public GameView(int width, int height) {
         try {
             System.out.println("Inicializa GameView com largura: " + width + " e altura:" + height);
+            //valida se as dimensões recebidas são válidas (maiores que zero). Se não forem, ele lança uma exceção IllegalArgumentException
             if (width <= 0 || height <= 0) {
                 throw new IllegalArgumentException("A largura e a altura devem ser maiores que 0.");
             }
-            // Load custom font
+            // Coloca as fontes personalizadas
             InputStream fontStream = getClass().getResourceAsStream("/fonts/Fonte.ttf");
             if (fontStream == null) {
                 throw new RuntimeException("Fonte não encontrada");
             }
             Font customFont = Font.createFont(Font.TRUETYPE_FONT, fontStream).deriveFont(24f);
             SwingTerminalFontConfiguration fontConfig = SwingTerminalFontConfiguration.newInstance(customFont);
-            // Create terminal with custom font configuration
             terminal = new DefaultTerminalFactory()
                     .setTerminalEmulatorFontConfiguration(fontConfig)
                     .createTerminal();
@@ -74,7 +76,7 @@ public class GameView {
         this.state = gameState;
     }
     /**
- * Displays a centered message on the game screen.
+ * Coloca a mensagem no centro do ecra
 
  */
 private void displayMessage(String message) {
@@ -94,6 +96,8 @@ private void displayMessage(String message) {
     }
 
 }
+
+//Limpar o conteudo do ecra para que o conteudo antigo nao apareça, atualiza os movimentos da Snake
     private void clearScreen() {
         try {
             screen.clear();
@@ -101,6 +105,7 @@ private void displayMessage(String message) {
             e.printStackTrace();
         }
     }
+    // Responsavel por ecra principar para o jogador escolher o que quer fazer
     public void openMainMenu() {
         game_speed = INITIAL_GAME_SPEED;
         renderMainMenu();
@@ -115,6 +120,8 @@ private void displayMessage(String message) {
             exitGame();
         }
     }
+
+    //Ecra principal
     private void renderMainMenu() {
         TextGraphics tg = screen.newTextGraphics();
         tg.setForegroundColor(TextColor.ANSI.GREEN_BRIGHT);
@@ -147,6 +154,8 @@ private void displayMessage(String message) {
         tg.putString(x5, 16, line5);
         tg.putString(x6, 17, line6);
     }
+
+    // teclas de cada Menu
     private int handleMainMenu() {
         KeyStroke k;
         while (true) {
@@ -172,17 +181,17 @@ private void displayMessage(String message) {
                     KeyType keyType = k.getKeyType();
                     switch (keyType) {
                         case ArrowUp:
-                            // Implement action for Arrow Up if needed
+                            // Implementar ação para Arrow Up se necessário
                             break;
                         case ArrowDown:
-                            // Implement action for Arrow Down if needed
+                            // Implementar ação para Arrow Down se necessário
                             break;
                         case Enter:
-                            // Implement action for Enter key if needed
+                            // Implementar ação Enter se necessário
                             break;
-                        // Add more cases as required
+                        //Adiciona mais casos conforme necessário
                         default:
-                            // Optional: Handle other key types or ignore
+
                             break;
                     }
                 }
@@ -191,8 +200,9 @@ private void displayMessage(String message) {
         }
     }
 
+
     void showRanking() {
-        clearScreen(); // Clear the screen before displaying ranking
+        clearScreen(); //Limpa o ecrã antes de exibir a classificação
         TextGraphics tg = screen.newTextGraphics();
         tg.setForegroundColor(TextColor.ANSI.YELLOW);
         
@@ -201,10 +211,10 @@ private void displayMessage(String message) {
         tg.putString(10, 3, "Name          Score");
         tg.putString(10, 4, "--------------------------");
 
-        // Declare lineNumber outside the try block
+
         int lineNumber = 5; // Start displaying from line 5
 
-        // Load and display the ranking from the file using ClassLoader
+        //coloca no ecra a pontuaçao maxima
         try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream("Ranking/Ranking.txt");
              BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
             if (inputStream == null) {
@@ -215,26 +225,27 @@ private void displayMessage(String message) {
             
             String line;
             while ((line = reader.readLine()) != null) {
-                tg.putString(10, lineNumber++, line); // Display each line of the ranking
+                tg.putString(10, lineNumber++, line);
             }
         } catch (IOException e) {
-            tg.putString(10, lineNumber, "Erro ao carregar o ranking."); // Use lineNumber here
+            tg.putString(10, lineNumber, "Erro ao carregar o ranking.");
             e.printStackTrace();
         }
 
-        // Prompt to return to the main menu
+        // Voltar para o ecra principal
         tg.putString(10, lineNumber + 1, "Pressione qualquer tecla para voltar ao menu principal.");
         refreshScreen(); // Refresh the screen to show the ranking
 
-        // Wait for a key press to return to the main menu
+
         try {
             screen.readInput();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        openMainMenu(); // Return to the main menu
+        openMainMenu();
     }
 
+    //coloca as paredes em jogo
     private void drawWalls() {
         TextGraphics tg = screen.newTextGraphics();
         for (Posicao p : state.getWalls()) {
@@ -242,11 +253,13 @@ private void displayMessage(String message) {
             tg.putString(p.getX(), p.getY(), BORDER_STRING);
         }
     }
+
+    //inicia o jogo e realiza varias atualizaçoes a cada loop principal do jogo
     private void startGame() {
         Som.stopSound();
         int counter = 0;
         drawWall();
-        drawWalls(); // Add this line
+        drawWalls(); // adiciona paredes
         drawString(4, gameplay_height + 1, "SCORE: ", TextColor.ANSI.CYAN);
         drawScore();
         while (state.isSnakeAlive()) {
@@ -261,10 +274,10 @@ private void displayMessage(String message) {
         }
     }
     private void increaseDifficulty() {
-        // Calculate the increment based on fruits collected
+        //Calcula o incremento com base nos frutos recolhidos
         int increment = (fruitsCollected / MAX_FRUITS_BEFORE_DIFFICULTY_INCREASE) * 2;
 
-        // Define new wall positions
+        // Define a posicao das paredes
         int[][] newWallPositions = {
                 {10 + increment, 10},
                 {11 + increment, 10},
@@ -277,17 +290,16 @@ private void displayMessage(String message) {
                 {32 + increment, 20}
         };
 
-        // Iterate through each new wall position
         for (int[] pos : newWallPositions) {
             int x = pos[0];
             int y = pos[1];
 
-            // Draw the wall on the screen
+            //coloca a parede no ecrã
             drawString(x, y, BORDER_STRING, TextColor.ANSI.GREEN);
 
-            // Add the wall position to the game state for collision detection
+            //Adiciona a posição da parede ao estado do jogo para deteção de colisões
             Posicao wallPosicao = new Posicao(x, y);
-            if (!state.getWalls().contains(wallPosicao)) { // Prevent adding duplicates
+            if (!state.getWalls().contains(wallPosicao)) { // Evita adicionar duplicados
                 state.getWalls().add(wallPosicao);
             }
         }
@@ -302,7 +314,7 @@ private void displayMessage(String message) {
         Posicao head = state.getSnakeHead();
         if (checkCollision()) {
             highlightCrashPosition(head.getX(), head.getY());
-            boolean isNewHighScore = state.killSnake(); // Check if new highscore
+            boolean isNewHighScore = state.killSnake(); // Verifica se existe um novo recorde
             Som.playSound("/sounds/gameover.wav");
             if (isNewHighScore) {
                 String playerName = promptForHighScoreName();
@@ -315,7 +327,7 @@ private void displayMessage(String message) {
                 displayMessage("Game Over! Press any key to continue.");
             }
             try {
-                screen.readInput(); // Wait for key press
+                screen.readInput();
             } catch (IOException e) {
                 e.printStackTrace();
             } 
@@ -333,7 +345,7 @@ private void displayMessage(String message) {
             }
         } else if (state.snakeSteppedDynamite()) {
             highlightCrashPosition(head.getX(), head.getY());
-            boolean isNewHighScore = state.killSnake(); // Check if new highscore
+            boolean isNewHighScore = state.killSnake();
             Som.playSound("/sounds/explosion.wav");
             if (isNewHighScore) {
                 String playerName = promptForHighScoreName();
@@ -346,7 +358,7 @@ private void displayMessage(String message) {
                 displayMessage("Game Over! Press any key to continue.");
             }
             try {
-                screen.readInput(); // Wait for key press
+                screen.readInput();
             } catch (IOException e) {
                 e.printStackTrace();
             } 
@@ -357,10 +369,11 @@ private void displayMessage(String message) {
     }
 
     /**
- * Prompts the player to enter their name for the highscore.
- *
- * @return The entered name.
- */
+     * Solicita ao jogador que insira o seu nome.
+     *
+     * @return O nome introduzido.
+     */
+
     String promptForHighScoreName() {
     TextGraphics tg = screen.newTextGraphics();
     tg.setForegroundColor(TextColor.ANSI.YELLOW);
@@ -385,7 +398,7 @@ private void displayMessage(String message) {
             } else if (keyStroke.getKeyType() == KeyType.Backspace) {
                 if (nameBuilder.length() > 0) {
                     nameBuilder.deleteCharAt(nameBuilder.length() - 1);
-                    // Clear the last character on screen
+                    //Limpa o último caractere do ecrã
                     int charX = promptX + prompt.length() + nameBuilder.length();
                     tg.putString(charX, promptY, " ");
                 }
@@ -409,26 +422,23 @@ private void displayMessage(String message) {
     boolean checkCollision() {
         Posicao head = state.getSnakeHead();
 
-        // Check collision with outer walls
+
         if (head.getX() <= 0 || head.getX() >= gameplay_width ||
                 head.getY() <= 0 || head.getY() >= gameplay_height) {
             return true;
         }
 
-        // Check collision with snake's body
+
         if (state.getSnakeBody().stream().filter(p -> !p.equals(head)).anyMatch(head::equals)) {
             return true;
         }
 
-        // Check collision with internal walls
         if (state.getWalls().stream().anyMatch(head::equals)) {
             return true;
         }
 
         return false;
     }
-
-
 
 
     void readKeyStrokeboard() {
@@ -463,8 +473,7 @@ private void displayMessage(String message) {
         tg.setForegroundColor(TextColor.ANSI.CYAN);
         String scoreText = "SCORE: " + state.getScore();
         tg.putString(4, gameplay_height + 1, scoreText);
-    
-        // Display Highscore
+
         String highScoreText = "HIGH: " + state.getHighScoreName() + " - " + state.getHighScore();
         tg.setForegroundColor(TextColor.ANSI.MAGENTA);
         int highScoreX = gameplay_width - highScoreText.length() - 4;
