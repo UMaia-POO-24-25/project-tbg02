@@ -76,28 +76,28 @@ public class GameView {
         this.state = gameState;
     }
     /**
- * Coloca a mensagem no centro do ecra
+     * Coloca a mensagem no centro do ecra
 
- */
-private void displayMessage(String message) {
-    TextGraphics tg = screen.newTextGraphics();
-    tg.setForegroundColor(TextColor.ANSI.WHITE);
-    
-    // Calculate centered position
-    int x = (gameplay_width - message.length()) / 2;
-    int y = gameplay_height / 2;
-    
-    tg.putString(x, y, message);
+     */
+    private void displayMessage(String message) {
+        TextGraphics tg = screen.newTextGraphics();
+        tg.setForegroundColor(TextColor.ANSI.WHITE);
 
-    try{
-    screen.refresh();
-    } catch (IOException e) {
-        e.printStackTrace();
+        // Calculate centered position
+        int x = (gameplay_width - message.length()) / 2;
+        int y = gameplay_height / 2;
+
+        tg.putString(x, y, message);
+
+        try{
+            screen.refresh();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
-}
-
-//Limpar o conteudo do ecra para que o conteudo antigo nao apareça, atualiza os movimentos da Snake
+    //Limpar o conteudo do ecra para que o conteudo antigo nao apareça, atualiza os movimentos da Snake
     private void clearScreen() {
         try {
             screen.clear();
@@ -201,11 +201,11 @@ private void displayMessage(String message) {
     }
 
 
-    void showRanking() {
+    private void showRanking() {
         clearScreen(); //Limpa o ecrã antes de exibir a classificação
         TextGraphics tg = screen.newTextGraphics();
         tg.setForegroundColor(TextColor.ANSI.YELLOW);
-        
+
         // Display the ranking header
         tg.putString(10, 2, "########## RANKING ##########");
         tg.putString(10, 3, "Name          Score");
@@ -222,7 +222,7 @@ private void displayMessage(String message) {
                 refreshScreen();
                 return; // Exit the method if the file is not found
             }
-            
+
             String line;
             while ((line = reader.readLine()) != null) {
                 tg.putString(10, lineNumber++, line);
@@ -330,7 +330,7 @@ private void displayMessage(String message) {
                 screen.readInput();
             } catch (IOException e) {
                 e.printStackTrace();
-            } 
+            }
 
             openMainMenu();
         } else if (state.snakeAteFruit()) {
@@ -361,8 +361,8 @@ private void displayMessage(String message) {
                 screen.readInput();
             } catch (IOException e) {
                 e.printStackTrace();
-            } 
-            
+            }
+
             openMainMenu();
         }
         refreshScreen();
@@ -375,51 +375,51 @@ private void displayMessage(String message) {
      */
 
     String promptForHighScoreName() {
-    TextGraphics tg = screen.newTextGraphics();
-    tg.setForegroundColor(TextColor.ANSI.YELLOW);
-    String prompt = "New Highscore! Enter your name: ";
-    int promptX = (gameplay_width - prompt.length()) / 2;
-    int promptY = gameplay_height / 2;
-    tg.putString(promptX, promptY, prompt);
-    
-    try{
-        screen.refresh();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        TextGraphics tg = screen.newTextGraphics();
+        tg.setForegroundColor(TextColor.ANSI.YELLOW);
+        String prompt = "New Highscore! Enter your name: ";
+        int promptX = (gameplay_width - prompt.length()) / 2;
+        int promptY = gameplay_height / 2;
+        tg.putString(promptX, promptY, prompt);
 
-    StringBuilder nameBuilder = new StringBuilder();
-    while (true) {
-        try {
-            KeyStroke keyStroke = terminal.readInput();
-            if (keyStroke == null) continue;
-            if (keyStroke.getKeyType() == KeyType.Enter) {
-                break;
-            } else if (keyStroke.getKeyType() == KeyType.Backspace) {
-                if (nameBuilder.length() > 0) {
-                    nameBuilder.deleteCharAt(nameBuilder.length() - 1);
-                    //Limpa o último caractere do ecrã
-                    int charX = promptX + prompt.length() + nameBuilder.length();
-                    tg.putString(charX, promptY, " ");
-                }
-            } else {
-                char c = keyStroke.getCharacter() != null ? keyStroke.getCharacter() : ' ';
-                if (Character.isLetterOrDigit(c)) {
-                    nameBuilder.append(c);
-                    tg.setForegroundColor(TextColor.ANSI.GREEN);
-                    tg.putString(promptX + prompt.length() + nameBuilder.length() - 1, promptY, String.valueOf(c));
-                }
-            }
+        try{
             screen.refresh();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        StringBuilder nameBuilder = new StringBuilder();
+        while (true) {
+            try {
+                KeyStroke keyStroke = terminal.readInput();
+                if (keyStroke == null) continue;
+                if (keyStroke.getKeyType() == KeyType.Enter) {
+                    break;
+                } else if (keyStroke.getKeyType() == KeyType.Backspace) {
+                    if (nameBuilder.length() > 0) {
+                        nameBuilder.deleteCharAt(nameBuilder.length() - 1);
+                        //Limpa o último caractere do ecrã
+                        int charX = promptX + prompt.length() + nameBuilder.length();
+                        tg.putString(charX, promptY, " ");
+                    }
+                } else {
+                    char c = keyStroke.getCharacter() != null ? keyStroke.getCharacter() : ' ';
+                    if (Character.isLetterOrDigit(c)) {
+                        nameBuilder.append(c);
+                        tg.setForegroundColor(TextColor.ANSI.GREEN);
+                        tg.putString(promptX + prompt.length() + nameBuilder.length() - 1, promptY, String.valueOf(c));
+                    }
+                }
+                screen.refresh();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return nameBuilder.toString();
     }
-    return nameBuilder.toString();
-}
 
 
-    boolean checkCollision() {
+    private boolean checkCollision() {
         Posicao head = state.getSnakeHead();
 
 
@@ -442,7 +442,7 @@ private void displayMessage(String message) {
 
     //é responsável por ler as teclas pressionadas pelo jogador durante o jogo,
     // Ele verifica se o jogador pressionou uma tecla de direção (setas para cima, baixo, esquerda ou direita)
-    void readKeyStrokeboard() {
+    private void readKeyStrokeboard() {
         try {
             KeyStroke keyStroke = terminal.pollInput();
             if (keyStroke != null) {
@@ -531,13 +531,13 @@ private void displayMessage(String message) {
         tg.putString(x, y, string);
     }
     //cria novas frutas no ecra
-    void generateNewFruit() {
+    private void generateNewFruit() {
         Posicao newFruitPosicao = state.generateRandomObject(gameplay_width - 1, gameplay_height - 1);
         state.getFruits().add(newFruitPosicao); //adiciona novas frutas
         drawString(newFruitPosicao.getX(), newFruitPosicao.getY(), FRUIT_STRING, TextColor.ANSI.RED);
     }
     //cria novos dinamites
-    void generateNewDynamite() {
+    private void generateNewDynamite() {
         Posicao newDynamitePosicao = state.generateRandomObject(gameplay_width - 1, gameplay_height - 1);
         state.getDynamites().add(newDynamitePosicao); //adiciona novos dinamites
         drawString(newDynamitePosicao.getX(), newDynamitePosicao.getY(), DYNAMITE_STRING, TextColor.ANSI.WHITE_BRIGHT);
@@ -557,7 +557,7 @@ private void displayMessage(String message) {
     }
 
     //sai do e para o som de fundo
-    void exitGame() {
+    private void exitGame() {
         try {
             Som.stopSound(); //stops loops sound
             screen.stopScreen();
@@ -577,13 +577,12 @@ private void displayMessage(String message) {
     }
 
     // serve para parar o jogo
-    void sleep(int ms) {
+    private void sleep(int ms) {
         try {
             Thread.sleep(ms);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
     }
-
 
 }
