@@ -523,29 +523,32 @@ private void displayMessage(String message) {
         tg.putString(x, y, "X");
     }
 
-
+    //permite colocar o texto em qualquer parte do ecra
+    //drawString desenhar uma string em coordenadas específicas no ecra.
     private void drawString(int x, int y, String string, TextColor color) {
         TextGraphics tg = screen.newTextGraphics();
         if (color != null) tg.setForegroundColor(color);
         tg.putString(x, y, string);
     }
-
+    //cria novas frutas no ecra
     void generateNewFruit() {
         Posicao newFruitPosicao = state.generateRandomObject(gameplay_width - 1, gameplay_height - 1);
-        state.getFruits().add(newFruitPosicao);
+        state.getFruits().add(newFruitPosicao); //adiciona novas frutas
         drawString(newFruitPosicao.getX(), newFruitPosicao.getY(), FRUIT_STRING, TextColor.ANSI.RED);
     }
-
+    //cria novos dinamites
     void generateNewDynamite() {
         Posicao newDynamitePosicao = state.generateRandomObject(gameplay_width - 1, gameplay_height - 1);
-        state.getDynamites().add(newDynamitePosicao);
+        state.getDynamites().add(newDynamitePosicao); //adiciona novos dinamites
         drawString(newDynamitePosicao.getX(), newDynamitePosicao.getY(), DYNAMITE_STRING, TextColor.ANSI.WHITE_BRIGHT);
     }
 
+    //limpa a area especifica do ecra e e atualiza o conteudo da mesam
     private void clearStringAt(int x, int y) {
         drawString(x, y, EMPTY_STRING, null);
     }
     private void refreshScreen() {
+        //qualquer mudança no ecra , ele atualiza
         try {
             screen.refresh();
         } catch (Exception e) {
@@ -553,6 +556,7 @@ private void displayMessage(String message) {
         }
     }
 
+    //sai do e para o som de fundo
     void exitGame() {
         try {
             Som.stopSound(); //stops loops sound
@@ -562,6 +566,7 @@ private void displayMessage(String message) {
         }
     }
 
+    //serve ver qual a tecla que o jogador pressionou
     private KeyStroke readKeyStrokeInput() {
         try {
             return terminal.readInput();
@@ -570,6 +575,8 @@ private void displayMessage(String message) {
             return null;
         }
     }
+
+    // serve para parar o jogo
     void sleep(int ms) {
         try {
             Thread.sleep(ms);
