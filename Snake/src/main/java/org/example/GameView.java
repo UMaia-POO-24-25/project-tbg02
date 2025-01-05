@@ -440,7 +440,8 @@ private void displayMessage(String message) {
         return false;
     }
 
-
+    //é responsável por ler as teclas pressionadas pelo jogador durante o jogo,
+    // Ele verifica se o jogador pressionou uma tecla de direção (setas para cima, baixo, esquerda ou direita)
     void readKeyStrokeboard() {
         try {
             KeyStroke keyStroke = terminal.pollInput();
@@ -467,7 +468,7 @@ private void displayMessage(String message) {
         }
     }
 
-
+    //Colocar no ecra do jogo as informações de pontuação atual e a pontuação mais alta (high score)
     private void drawScore() {
         TextGraphics tg = screen.newTextGraphics();
         tg.setForegroundColor(TextColor.ANSI.CYAN);
@@ -481,7 +482,8 @@ private void displayMessage(String message) {
         tg.putString(highScoreX, highScoreY, highScoreText);
     }
 
-
+    //desenhar as paredes no jogo no terminal, ou seja, ele exibe as bordas e as paredes internas do campo de jogo
+    // (definidas como uma lista de posições)
     private void drawWall() {
 
         TextGraphics tg = screen.newTextGraphics();
@@ -499,6 +501,8 @@ private void displayMessage(String message) {
         }
     }
 
+
+    //desenhar a Snake no terminal, representando tanto a cabeça quanto o corpo da Snake
     private void drawSnake() {
         TextGraphics tg = screen.newTextGraphics();
         for (Posicao p : state.getSnakeBody()) {
@@ -511,26 +515,33 @@ private void displayMessage(String message) {
             }
         }
     }
+
+    //Colocar a posição onde ocorreu uma colisão no jogo, usando um "X" vermelho para indicar essa colisão no terminal
     private void highlightCrashPosition(int x, int y) {
         TextGraphics tg = screen.newTextGraphics();
         tg.setForegroundColor(TextColor.ANSI.RED);
         tg.putString(x, y, "X");
     }
+
+
     private void drawString(int x, int y, String string, TextColor color) {
         TextGraphics tg = screen.newTextGraphics();
         if (color != null) tg.setForegroundColor(color);
         tg.putString(x, y, string);
     }
+
     void generateNewFruit() {
         Posicao newFruitPosicao = state.generateRandomObject(gameplay_width - 1, gameplay_height - 1);
         state.getFruits().add(newFruitPosicao);
         drawString(newFruitPosicao.getX(), newFruitPosicao.getY(), FRUIT_STRING, TextColor.ANSI.RED);
     }
+
     void generateNewDynamite() {
         Posicao newDynamitePosicao = state.generateRandomObject(gameplay_width - 1, gameplay_height - 1);
         state.getDynamites().add(newDynamitePosicao);
         drawString(newDynamitePosicao.getX(), newDynamitePosicao.getY(), DYNAMITE_STRING, TextColor.ANSI.WHITE_BRIGHT);
     }
+
     private void clearStringAt(int x, int y) {
         drawString(x, y, EMPTY_STRING, null);
     }
@@ -541,6 +552,7 @@ private void displayMessage(String message) {
             e.printStackTrace();
         }
     }
+
     void exitGame() {
         try {
             Som.stopSound(); //stops loops sound
@@ -549,6 +561,7 @@ private void displayMessage(String message) {
             e.printStackTrace();
         }
     }
+
     private KeyStroke readKeyStrokeInput() {
         try {
             return terminal.readInput();
