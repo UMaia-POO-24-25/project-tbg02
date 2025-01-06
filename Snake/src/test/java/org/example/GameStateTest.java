@@ -7,6 +7,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.mockito.Mockito.*;
 
+/**
+ * A classe GameStateTest contém testes unitários para a classe GameState.
+ * Ela verifica se a direção da cobra é definida corretamente e se a cobra se move corretamente.
+ */
+
 public class GameStateTest {
     private GameState gameState;
     private Snake snake;
@@ -18,7 +23,7 @@ public class GameStateTest {
         snake = mock(Snake.class);
         fruits = mock(LinkedList.class);
 
-        // Usando reflexão para definir os mocks nos campos privados
+        
         try {
             java.lang.reflect.Field snakeField = GameState.class.getDeclaredField("snake");
             snakeField.setAccessible(true);
@@ -31,6 +36,9 @@ public class GameStateTest {
             e.printStackTrace();
         }
     }
+
+
+    
 
     @Test
     public void testSnakeAteFruit() {
@@ -52,6 +60,10 @@ public class GameStateTest {
         verify(snake, never()).increaseSize();
     }
 
+     /**
+     * O método testSetDirection verifica se a direção da cobra é definida corretamente.
+     * Ele também verifica se a direção não é definida para a direção oposta.
+     */
 
     @Test
     public void testSetDirection() {
@@ -64,6 +76,9 @@ public class GameStateTest {
         verify(snake).setDirection(Direcao.UP);
     }
 
+    /**
+     * O método testMoveSnake verifica se a cobra se move corretamente.
+     */
 
     @Test
     public void testMoveSnake() {

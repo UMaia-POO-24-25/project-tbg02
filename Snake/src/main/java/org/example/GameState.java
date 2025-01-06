@@ -13,6 +13,7 @@ import java.io.File;
 /**
  * Representa o estado do jogo da cobra, incluindo a cobra, os frutos, os obstáculos e a pontuação.
  */
+
 public class GameState {
 
     private final static int SCORE_PENALTY = 25;
@@ -20,21 +21,16 @@ public class GameState {
     private LinkedList<Posicao> fruits;
     private LinkedList<Posicao> dynamites;
     private LinkedList<Posicao> walls;
-
-    // Current score
-    private int score;
-
-       // Highscore fields
-       private String highScoreName = "None";
-       private int highScore = 0;
-       private final String HIGH_SCORE_FILE = "src\\main\\resources\\Ranking\\Ranking.txt";
-
-    // Gerador de números aleatórios.
-    private final Random rand;
+    private int score; // Current score
+    private String highScoreName = "None"; // Highscore fields
+    private int highScore = 0;
+    private final String HIGH_SCORE_FILE = "src\\main\\resources\\Ranking\\Ranking.txt";
+    private final Random rand; // Gerador de números aleatórios.
 
     /**
      * Instancia um novo objeto GameState.
      */
+
     public GameState() {
         rand = new Random();
         snake = new Snake(Direcao.RIGHT); // Snake starts facing right
@@ -43,10 +39,10 @@ public class GameState {
         walls = new LinkedList<>();
         score = 0;
 
-        loadHighScore();
+        loadHighScore(); // Carrega a melhor pontuação do arquivo
 
-        //adiciona paredes no jogo
-        generateWalls();
+        
+        generateWalls(); // Adiciona paredes no jogo
     }
 
     // Responsavel por verificar a pontuaçao mais alta do arquivo
@@ -85,14 +81,14 @@ private void saveHighScore() {
   public boolean checkHighScore() {
     if (score > highScore) {
         highScore = score;
-      //  highScoreName = getPlayerName();
+      //highScoreName = getPlayerName();
         //saveHighScore();
         return true;
     }
     return false;
 }
 
-//responsavel por armazenar a melhor pontuaçao
+// Responsavel por armazenar a melhor pontuaçao
 public void setHighScoreName(String name) {
     this.highScoreName = name;
     saveHighScore();
@@ -100,6 +96,7 @@ public void setHighScoreName(String name) {
 
 
 // Devolve a melhor pontuaçao
+
 public int getHighScore() {
     return highScore;
 }
@@ -110,6 +107,7 @@ public String getHighScoreName() {
 
 
     // Responsaveis por colocar os frutos e os dinamites
+
     public LinkedList<Posicao> getFruits() {
         return fruits;
     }
@@ -143,17 +141,17 @@ public String getHighScoreName() {
         snake.move();
     }
 
-    //Devolve a lista de posições que representam o corpo da Snake.
+    // Devolve a lista de posições que representam o corpo da Snake.
     public LinkedList<Posicao> getSnakeBody() {
         return snake.getBody();
     }
 
-    //devolve a posicao da cabeça da Snake
+    // Devolve a posicao da cabeça da Snake
     public Posicao getSnakeHead() {
         return (Posicao) snake.getHead();
     }
 
-    //devolve a posicao da cauda da Snake
+    // Devolve a posicao da cauda da Snake
     public Posicao getSnakeTail() {
         return (Posicao) snake.getTail();
     }
@@ -163,6 +161,7 @@ public String getHighScoreName() {
      *
      * @return Verdadeiro se a cobra comeu um fruto, caso contrário, falso.
      */
+
     public boolean snakeAteFruit() {
         if (snake.ateFruit(fruits)) {
             updateScore(true);
@@ -172,7 +171,8 @@ public String getHighScoreName() {
         return false;
     }
 
-    //responsavel por criar paredes durante o jogo para aumentar a dificuldade
+    // Responsavel por criar paredes durante o jogo para aumentar a dificuldade.
+
     private void generateWalls() {
 
         walls.add(new Posicao(10, 10));
@@ -197,6 +197,7 @@ public String getHighScoreName() {
     /**
      * Define a direção da cobra, impedindo-a de virar para a direção oposta.
      */
+    
     public void setDirection(Direcao dir) {
         if (dir == null) return;
 

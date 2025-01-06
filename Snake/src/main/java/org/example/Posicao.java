@@ -1,5 +1,11 @@
 package org.example;
 
+/**
+ * A classe Posicao representa uma posição com coordenadas x e y.
+ * Ela fornece métodos para obter as coordenadas e sobrescreve os métodos equals e hashCode
+ * para permitir a comparação de objetos Posicao e o uso em coleções baseadas em hash.
+ */
+
 public class Posicao {
     private int x;
     private int y;
@@ -26,7 +32,7 @@ public class Posicao {
 
     @Override
     public int hashCode() {
-        return 31 * x + y;
+        return 31 * x + y; // Gera um código hash baseado nas coordenadas x e y
     }
 }
 

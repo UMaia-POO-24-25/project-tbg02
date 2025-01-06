@@ -6,6 +6,13 @@ import java.io.BufferedInputStream;
 import javax.sound.sampled.Clip;
 import java.io.InputStream;
 
+/**
+ * A classe Som é responsável por tocar arquivos de som no jogo.
+ * Ela utiliza a API javax.sound.sampled para carregar e tocar sons.
+ * O método playSound carrega um arquivo de som e o toca.
+ * Se um som já estiver tocando, ele será interrompido antes de tocar o novo som.
+ */
+
 public class Som {
     public static Clip clip;
 
