@@ -130,7 +130,7 @@ O tratamento de teclas pressionadas na classe GameView pode ser interpretado com
   ![alt text](https://github.com/UMaia-POO-24-25/project-tbg02/blob/main/docs/img/ingame.png)
 
 - **Ecrã de Fim**: Mostra a pontuação final com a opção de reiniciar.  
-  ![alt text](https://github.com/UMaia-POO-24-25/project-tbg02/blob/main/docs/img/EndGame.png)
+  ![alt text](https://github.com/UMaia-POO-24-25/project-tbg02/blob/main/docs/img/introducaofinal.jpg)
 
 ---
 
