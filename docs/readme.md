@@ -30,13 +30,13 @@ Este projeto está implementado em **Java**, proporcionando uma experiência int
 ## 🕹️ Planned Features
 
 - **Ranking/highscore**: Implementação de highscore e gravar o mesmo, com introdução do nome.
- ![alt text](https://github.com/UMaia-POO-24-25/project-tbg02/blob/main/docs/img/ranking.png)
+ ![alt text](https://github.com/UMaia-POO-24-25/project-tbg02/blob/main/docs/img/ranking1.jpg)
 
 - **Colisão com o corpo da cobra**: O jogo termina se a cobra colidir consigo mesma.
   
 - **Menu Iniciar**: Inclui opções de início, pontuações máximas e Ranking.
   
-![alt text](https://github.com/UMaia-POO-24-25/project-tbg02/blob/main/docs/img/PlanedFeatureRanking.png)
+![alt text](https://github.com/UMaia-POO-24-25/project-tbg02/blob/main/docs/img/imagem%20snake.jpg)
 
 --- 
 
