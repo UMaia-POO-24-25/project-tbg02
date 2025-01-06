@@ -36,7 +36,7 @@ Este projeto está implementado em **Java**, proporcionando uma experiência int
   
 - **Menu Iniciar**: Inclui opções de início, pontuações máximas e Ranking.
   
-![alt text]((https://github.com/UMaia-POO-24-25/project-tbg02/blob/main/docs/img/imagem%20snake.jpg))
+![alt text](https://github.com/UMaia-POO-24-25/project-tbg02/blob/main/docs/img/imagem%20snake.jpg)
 
 --- 
 
