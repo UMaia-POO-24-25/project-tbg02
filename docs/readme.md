@@ -145,6 +145,9 @@ O tratamento de teclas pressionadas na classe GameView pode ser interpretado com
 O **Modo Clássico** do jogo Snake oferece uma experiência nostálgica, combinando simplicidade e desafio. É perfeito para quem procura uma jogabilidade direta e viciante, com o objetivo de alcançar a maior pontuação possível.  
 
 ---
+##Bibliografia
+
+https://www.youtube.com/watch?v=bI6e6qjJ8JQ
 
 ## Self-Evaluation
 
