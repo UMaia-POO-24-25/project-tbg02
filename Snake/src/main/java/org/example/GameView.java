@@ -131,6 +131,7 @@ public class GameView {
         tg.putString(10, 7, "      ##   ###  ##  ###   ###     ###   ###   ##     ###    ");
         tg.putString(10, 8, "      ##   ###  ######    ###     ###   ###    ##    ###    ");
         tg.putString(10, 9, "########   ###  ######    ###     ###   ###     ##   ########");
+        tg.putString(17, 11, "To Play use the Arrow Keys to move the snake.");
         tg.setForegroundColor(TextColor.ANSI.WHITE_BRIGHT);
         String line1 = "###########################";
         String line2 = "#         Press           #";
