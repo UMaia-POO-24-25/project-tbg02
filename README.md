@@ -1,7 +1,7 @@
-[![Review Assignment Due Date](https://github.com/UMaia-POO-24-25/project-tbg02/blob/main/docs/img/imagem%20snake.jpg)](https://classroom.github.com/a/UfPX3NkQ)
+[![Review Assignment Due Date]](https://classroom.github.com/a/UfPX3NkQ)
 
 # Jogo Snake em Java
-![Alt text](https://i0.wp.com/tilcode.blog/wp-content/uploads/2019/04/Screen-Shot-2019-04-28-at-17.51.16.png?w=998&ssl=1)
+![Alt text](https://github.com/UMaia-POO-24-25/project-tbg02/blob/main/docs/img/imagem%20snake.jpg)
 ----------------------------------------------------------------------------------------
 ## Alunos
 
